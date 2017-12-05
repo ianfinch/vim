@@ -106,15 +106,21 @@ au Syntax * RainbowParenthesesLoadBraces
 " }}}
 
 " Turn on folding {{{
-set fillchars=vert:\|,fold:.
+set fillchars=vert:\|,fold:-
 function! NeatFoldText()
    let foldchar = matchstr(&fillchars, 'fold:\zs.')
-   let foldLabel = substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g')
+   if getline(v:foldstart) == '/**'
+      let foldLabel = substitute(getline(v:foldstart + 1), '^ *\*', '//', '')
+   else
+      let foldLabel = getline(v:foldstart)
+   endif
    let lineCount = v:foldend - v:foldstart + 1
-   return repeat('>>', v:foldlevel) . ' ' . foldLabel . " (" . lineCount . " lines) "
+   return repeat('+', v:foldlevel) . '-- ' . foldLabel . " (" . lineCount . " lines) "
 endfunction
 set foldmethod=syntax
 set foldtext=NeatFoldText()
+
+let g:markdown_folding = 1
 " }}}
 
 " Set up vimwiki {{{
@@ -195,6 +201,10 @@ let g:buffergator_suppress_keymaps = 1
 " Shortcuts to open / close tabs
 :map <Leader>to :tabnew<CR>
 :map <Leader>tc :tabclose<CR>
+
+" Shortcuts for horizontal and vertical split
+:map <Leader>h :split<CR>
+:map <Leader>v :vsplit<CR>
 " }}}
 
 " Additional key mappings {{{
@@ -202,6 +212,10 @@ let g:buffergator_suppress_keymaps = 1
 " Trigger make
 :map <Leader>m :make!<CR>
 
-"Set a key for colorizer (to avoid conflict with tab keys)
-nmap <unique> <Leader>h <Plug>Colorizer
+" Set a key for colorizer (to avoid conflict with tab keys)
+nmap <unique> <Leader>c <Plug>Colorizer
+
+" Splits
+:map <Leader>\| :vsplit<CR>
+:map <Leader>- :split<CR>
 " }}}

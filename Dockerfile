@@ -26,6 +26,7 @@ RUN mkdir -p /home/ian/.vim/bundle                                  && \
     git clone https://github.com/vim-airline/vim-airline.git        && \
     git clone https://github.com/vim-scripts/nginx.vim.git          && \
     git clone https://github.com/vim-syntastic/syntastic.git        && \
+    git clone https://github.com/ajmwagar/vim-deus.git              && \
     mkdir -p /home/ian/.vim/autoload/airline/themes
 
 COPY vimrc /home/ian/.vimrc
