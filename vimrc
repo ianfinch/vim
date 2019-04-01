@@ -42,6 +42,9 @@ set visualbell
 set hlsearch
 :map <Leader>/ :nohlsearch<CR>
 
+" Line numbering
+set number
+
 " }}}
 
 " Use spaces for tabs {{{
@@ -203,8 +206,9 @@ let g:buffergator_suppress_keymaps = 1
 :map <Leader>tc :tabclose<CR>
 
 " Shortcuts for horizontal and vertical split
-:map <Leader>h :split<CR>
-:map <Leader>v :vsplit<CR>
+set splitright
+:map <Leader>\| :vsplit<CR>
+:map <Leader>- :split<CR>
 " }}}
 
 " Additional key mappings {{{
@@ -214,8 +218,18 @@ let g:buffergator_suppress_keymaps = 1
 
 " Set a key for colorizer (to avoid conflict with tab keys)
 nmap <unique> <Leader>c <Plug>Colorizer
+" }}}
 
-" Splits
-:map <Leader>\| :vsplit<CR>
-:map <Leader>- :split<CR>
+" Automatically find unit tests {{{
+
+function OpenUnitTestFile ()
+   let srcFile = expand('%:p')
+
+   let testFile = substitute(srcFile, '/src/\([^/]*/[^/]*\)\.clj', '/test/\1_test.clj', '')
+
+   execute "vsplit" testFile
+endfunction
+
+:map <Leader>u :call OpenUnitTestFile()<CR>
+
 " }}}
