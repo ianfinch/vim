@@ -10,7 +10,7 @@ snippet html "Simple HTML page"
 	</head>
 	<body>
 		<h1>$1</h1>
-		<p>Hello world!</p>
+		${2:<p>Hello world!</p>}
 	</body>
 </html>
 endsnippet
@@ -60,11 +60,11 @@ snippet boiler "HTML5 Boilerplate"
 endsnippet
 
 snippet css "XHTML <link>" w
-<link rel="${1:stylesheet}" href="${2:/css/style}" type="text/css" media="${3:screen}" />
+<link rel="${1:stylesheet}" href="${2:/css/style.css}" type="text/css" media="${3:screen}" />
 endsnippet
 
 snippet script "XHTML <script src...>" w
-<script src="$1" type="text/javascript" charset="${3:utf-8}"></script>
+<script src="${1:/js/script.js}" type="${2:text/javascript}" charset="${3:utf-8}"></script>
 endsnippet
 
 snippet div "<div>...</div>"
@@ -77,4 +77,40 @@ endsnippet
 
 snippet h1 "<h1>...</h1>"
 <h1>$1</h1>
+endsnippet
+
+snippet form "<form>...</form>"
+<form>
+	$1
+</form>
+endsnippet
+
+snippet "form#(.*)" "<form id=...>...</form>" r
+<form id="`!p snip.rv = match.group(1)`">
+	$1
+</form>
+endsnippet
+
+snippet input "<input type=text>...</input>"
+<input type="text" />
+endsnippet
+
+snippet "input#(.*)" "<input id=...>...</input>" r
+<input type="text" id="`!p snip.rv = match.group(1)`" />
+endsnippet
+
+snippet " #(.*)" "Expand hash to id statement" r
+ id="`!p snip.rv = match.group(1)`"
+endsnippet
+
+snippet " \.(.*)" "Expand dot to class statement" r
+ class="`!p snip.rv = match.group(1)`"
+endsnippet
+
+snippet uikit "Add UIKit dependencies"
+<!-- Include UIKit -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/css/uikit.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit-icons.min.js"></script>
+<!-- End of UIKit -->
 endsnippet

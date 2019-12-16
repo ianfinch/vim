@@ -17,66 +17,47 @@ snippet solar "RGB values for solarized dark"
 .cyan      { background: #2aa198; color: #eee8d5; }
 endsnippet
 
-snippet base0 "Hex value for base0"
-#839496
-endsnippet
+snippet simple "Simple styling for web pages"
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic");
 
-snippet base1 "Hex value for base1"
-#93a1a1
-endsnippet
+body {
+	margin: 0px;
+	padding: 0px;
+	font-family: Roboto,Helvetica,Arial;
+	background: #fbfbfb;
+	color: #999;
+	text-align: center;
+	padding-top: 40px;
+}
 
-snippet base2 "Hex value for base2"
-#eee8d5
-endsnippet
+input {
+	border: 1px solid #999;
+	border-radius: 4px;
+	padding: 2px 4px;
+	color: #999;
+}
 
-snippet base3 "Hex value for base3"
-#fdf6e3
-endsnippet
+.info {
+	color: blue;
+	border-color: blue;
+	background: lightskyblue;
+}
 
-snippet base00 "Hex value for base00"
-#657b83
-endsnippet
+.success {
+	color: green;
+	border-color: green;
+	background: palegreen;
+}
 
-snippet base01 "Hex value for base01"
-#586e75
-endsnippet
+.warning {
+	color: goldenrod;
+	border-color: goldenrod;
+	background: lemonchiffon;
+}
 
-snippet base02 "Hex value for base02"
-#073642
-endsnippet
-
-snippet base03 "Hex value for base03"
-#002b36
-endsnippet
-
-snippet red "Hex value for red"
-#dc322f
-endsnippet
-
-snippet orange "Hex value for orange"
-#cb4b16
-endsnippet
-
-snippet yellow "Hex value for yellow"
-#b58900
-endsnippet
-
-snippet green "Hex value for green"
-#859900
-endsnippet
-
-snippet blue "Hex value for blue"
-#268bd2
-endsnippet
-
-snippet magenta "Hex value for magenta"
-#d33682
-endsnippet
-
-snippet violet "Hex value for violet"
-#6c71c4
-endsnippet
-
-snippet cyan "Hex value for cyan"
-#2aa198
+.error {
+	color: red;
+	border-color: red;
+	background: pink;
+}
 endsnippet

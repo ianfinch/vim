@@ -483,3 +483,17 @@ def closing_par(snip, pos):
 endglobal
 
 # vim:ft=snippets:
+
+snippet server "Create a web server"
+package main
+
+import (
+	"log"
+	"net/http"
+)
+
+func main() {
+	log.Println("Server listening on port 3000")
+	http.ListenAndServe(":${1:3000}", http.FileServer(http.Dir("${2:public}/")))
+}
+endsnippet

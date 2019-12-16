@@ -66,7 +66,7 @@ filetype plugin on
 
 " Colour scheme {{{
 set background=dark
-colorscheme colorful256
+colorscheme solarized
 " }}}
 
 " Syntax highlighting {{{
@@ -141,9 +141,9 @@ set modelines=5
 " }}}
 
 " Ultisnips {{{
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger="<Leader>e"
+let g:UltiSnipsJumpForwardTrigger="<Leader>e"
+let g:UltiSnipsJumpBackwardTrigger="<Leader>E"
 " }}}
 
 " Session save and load shortcuts {{{
