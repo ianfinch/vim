@@ -65,8 +65,7 @@ filetype plugin on
 " }}}
 
 " Colour scheme {{{
-set background=dark
-colorscheme solarized
+colorscheme vividchalkian
 " }}}
 
 " Syntax highlighting {{{

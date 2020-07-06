@@ -14,7 +14,6 @@ RUN cd /tmp/                                                                    
 RUN mkdir -p /home/ian/.vim/bundle                                  && \
     cd /home/ian/.vim/bundle                                        && \
     git clone https://github.com/chrisbra/Colorizer.git             && \
-    git clone https://github.com/flazz/vim-colorschemes.git         && \
     git clone https://github.com/groenewege/vim-less.git            && \
     git clone https://github.com/jeetsukumaran/vim-buffergator.git  && \
     git clone https://github.com/jelera/vim-javascript-syntax.git   && \
@@ -33,6 +32,8 @@ RUN mkdir -p /home/ian/.vim/bundle                                  && \
 
 COPY vimrc /home/ian/.vimrc
 COPY guzo-airline-theme.vim /home/ian/.vim/autoload/airline/themes/guzo.vim
+RUN mkdir /home/ian/.vim/colors
+COPY vividchalkian.vim /home/ian/.vim/colors/vividchalkian.vim
 ADD UltiSnips /home/ian/.vim/UltiSnips
 RUN chown -R ian /home/ian/.vimrc /home/ian/.vim
 

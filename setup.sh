@@ -5,7 +5,6 @@ current=$PWD
 mkdir -p $HOME/.vim/bundle
 cd $HOME/.vim/bundle
 git clone https://github.com/chrisbra/Colorizer.git
-git clone https://github.com/flazz/vim-colorschemes.git
 git clone https://github.com/groenewege/vim-less.git
 git clone https://github.com/jeetsukumaran/vim-buffergator.git
 git clone https://github.com/jelera/vim-javascript-syntax.git
@@ -24,5 +23,7 @@ git clone https://github.com/airblade/vim-gitgutter.git
 cd $current
 mkdir -p $HOME/.vim/autoload/airline/themes
 cp guzo-airline-theme.vim $HOME/.vim/autoload/airline/themes/guzo.vim
+mkdir -p $HOME/.vim/colors
+cp vividchalkian.vim $HOME/.vim/colors/vividchalkian.vim
 cp -R UltiSnips $HOME/.vim/UltiSnips
 cp vimrc $HOME/.vimrc
