@@ -65,6 +65,7 @@ filetype plugin on
 " }}}
 
 " Colour scheme {{{
+set t_Co=256
 colorscheme vividchalkian
 " }}}
 
