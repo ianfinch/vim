@@ -14,9 +14,7 @@ vimrc:
 bundle:
 	mkdir -p $(BUNDLE_DIR)
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/chrisbra/Colorizer.git
-	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/groenewege/vim-less.git
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/jeetsukumaran/vim-buffergator.git
-	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/jelera/vim-javascript-syntax.git
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/kien/rainbow_parentheses.vim.git
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/SirVer/ultisnips.git
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/tpope/vim-fugitive.git
@@ -25,8 +23,7 @@ bundle:
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/vim-airline/vim-airline.git
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/vim-scripts/nginx.vim.git
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/vim-syntastic/syntastic.git
-	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/ajmwagar/vim-deus.git
-	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/posva/vim-vue.git
+	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/jelera/vim-javascript-syntax.git
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/airblade/vim-gitgutter.git
 
 .PHONY: airline

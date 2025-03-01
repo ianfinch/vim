@@ -64,6 +64,11 @@ execute pathogen#infect()
 filetype plugin on
 " }}}
 
+" Autocomplete {{{
+set omnifunc=syntaxcomplete#Complete
+set omnifunc=javascriptcomplete#CompleteJS
+" }}}
+
 " Colour scheme {{{
 set t_Co=256
 colorscheme vividchalkian
