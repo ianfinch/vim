@@ -1,9 +1,10 @@
 SHELL := bash
 VIM_DIR := $(HOME)/.vim
 BUNDLE_DIR := $(VIM_DIR)/bundle
+NVIM_DIR := $(HOME)/.config/nvim
 
 .PHONY: all
-all: clean vimrc bundle airline colours snips
+all: clean vimrc bundle airline colours snips neovim
 
 .PHONY: vimrc
 vimrc:
@@ -42,6 +43,13 @@ colours:
 snips:
 	cp -R UltiSnips $(VIM_DIR)/UltiSnips
 
+.PHONY: neovim
+neovim:
+	mkdir -p $(NVIM_DIR)
+	cp init.vim $(NVIM_DIR)/init.vim
+
 .PHONY: clean
 clean:
+	rm -f $(HOME)/.vimrc
 	rm -rf $(VIM_DIR)
+	rm -rf $(NVIM_DIR)
