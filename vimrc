@@ -97,6 +97,7 @@ let g:airline_theme = 'guzo'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#show_close_button = 0
 set laststatus=2
 set noshowmode
 " }}}
