@@ -34,7 +34,7 @@ airline:
 .PHONY: colours
 colours:
 	mkdir -p $(VIM_DIR)/colors
-	cp iantheme.vim $(VIM_DIR)/colors/iantheme.vim
+	cat iantheme.vim | ./add-gui-colours.sh > $(VIM_DIR)/colors/iantheme.vim
 	cp vividchalkian.vim $(VIM_DIR)/colors/vividchalkian.vim
 
 .PHONY: snips
