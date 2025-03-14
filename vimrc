@@ -71,7 +71,7 @@ set omnifunc=javascriptcomplete#CompleteJS
 
 " Colour scheme {{{
 set t_Co=256
-colorscheme vividchalkian
+colorscheme iantheme
 " }}}
 
 " Syntax highlighting {{{
