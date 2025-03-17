@@ -57,7 +57,9 @@ set autoindent
 
 " Load in Pathogen {{{
 runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#infect()
+if exists("*pathogen#infect")
+    execute pathogen#infect()
+endif
 " }}}
 
 " Use ftplugins {{{
@@ -71,7 +73,10 @@ set omnifunc=javascriptcomplete#CompleteJS
 
 " Colour scheme {{{
 set t_Co=256
-colorscheme iantheme
+try
+    colorscheme iantheme
+catch /E185/
+endtry
 " }}}
 
 " Syntax highlighting {{{
@@ -115,10 +120,12 @@ set noshowmode
 " }}}
 
 " Set up rainbow brackets {{{
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+if exists("*rainbow_parentheses#toggle")
+    au VimEnter * RainbowParenthesesToggle
+    au Syntax * RainbowParenthesesLoadRound
+    au Syntax * RainbowParenthesesLoadSquare
+    au Syntax * RainbowParenthesesLoadBraces
+endif
 " }}}
 
 " Turn on folding {{{
