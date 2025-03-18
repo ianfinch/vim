@@ -203,8 +203,8 @@ endfunction
 
 " Keys for easier use of files, buffers and tabs {{{
 
-" Use Leader-f to open (vinegar enhanced) netrw
-:map <Leader>f :edit .<CR>
+" Use Leader-f to open NERDTree
+:map <Leader>f :NERDTree<CR>
 
 " Use netrw in tree view
 let g:netrw_liststyle=3

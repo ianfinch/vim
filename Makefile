@@ -19,6 +19,7 @@ bundle:
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/tpope/vim-fugitive.git
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/tpope/vim-pathogen.git
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/tpope/vim-vinegar.git
+	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/preservim/nerdtree.git
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/vim-scripts/nginx.vim.git
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/vim-syntastic/syntastic.git
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/jelera/vim-javascript-syntax.git
