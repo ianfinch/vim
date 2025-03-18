@@ -82,16 +82,16 @@ hi link Exception   Statement
 " }}}
 
 " Status line {{{
-hi StatusLineNC     ctermfg=0 ctermbg=248
-hi StatusLineTermNC ctermfg=0 ctermbg=121
-hi StatusLineTerm   ctermfg=0  ctermbg=121
+hi StatusLineNC     cterm=NONE ctermfg=0 ctermbg=248
+hi StatusLineTermNC cterm=NONE ctermfg=0 ctermbg=121
+hi StatusLineTerm   cterm=NONE ctermfg=0  ctermbg=121
 hi StatusLine       cterm=NONE ctermfg=15 ctermbg=53
 " }}}
 
 " Tab bar {{{
 hi TabLineFill cterm=NONE ctermfg=15 ctermbg=53
 hi TabLineSel  cterm=NONE ctermfg=15 ctermbg=55
-hi TabLine     cterm=NONE ctermfg=15 ctermbg=8
+hi TabLine     cterm=NONE ctermfg=15 ctermbg=53
 " }}}
 
 " Types {{{
