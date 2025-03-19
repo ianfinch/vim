@@ -4,26 +4,27 @@ BUNDLE_DIR := $(VIM_DIR)/bundle
 NVIM_DIR := $(HOME)/.config/nvim
 
 .PHONY: all
-all: clean vimrc bundle airline colours snips neovim
+all: clean vimrc bundles airline colours snips neovim
 
 .PHONY: vimrc
 vimrc:
 	cp vimrc $(HOME)/.vimrc
 
-.PHONY: bundle
-bundle:
+.PHONY: bundles
+bundles:
 	mkdir -p $(BUNDLE_DIR)
-	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/chrisbra/Colorizer.git
-	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/jeetsukumaran/vim-buffergator.git
-	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/kien/rainbow_parentheses.vim.git
-	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/tpope/vim-fugitive.git
-	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/tpope/vim-pathogen.git
-	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/tpope/vim-vinegar.git
-	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/preservim/nerdtree.git
-	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/vim-scripts/nginx.vim.git
-	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/vim-syntastic/syntastic.git
-	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/jelera/vim-javascript-syntax.git
-	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/airblade/vim-gitgutter.git
+	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/chrisbra/Colorizer.git || true
+	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/jeetsukumaran/vim-buffergator.git || true
+	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/kien/rainbow_parentheses.vim.git || true
+	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/tpope/vim-fugitive.git || true
+	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/junegunn/gv.vim.git || true
+	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/tpope/vim-pathogen.git || true
+	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/tpope/vim-vinegar.git || true
+	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/preservim/nerdtree.git || true
+	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/vim-scripts/nginx.vim.git || true
+	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/vim-syntastic/syntastic.git || true
+	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/jelera/vim-javascript-syntax.git || true
+	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/airblade/vim-gitgutter.git || true
 
 .PHONY: airline
 airline:

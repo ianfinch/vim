@@ -239,6 +239,9 @@ set splitright
 " Trigger make
 :map <Leader>m :make!<CR>
 
+" Open git commit browser
+:map <Leader>g :GV<CR>
+
 " Set a key for colorizer (to avoid conflict with tab keys)
 nmap <unique> <Leader>c <Plug>Colorizer
 " }}}
