@@ -45,6 +45,9 @@ set hlsearch
 " Line numbering
 set number
 
+" Highlight the current cursor line
+:set cursorline
+
 " }}}
 
 " Use spaces for tabs {{{

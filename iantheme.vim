@@ -105,8 +105,8 @@ hi link Typedef      Type
 hi ColorColumn   ctermbg=1
 hi Conceal       ctermfg=7 ctermbg=242
 hi CursorColumn  ctermbg=242
-hi CursorLineNr  ctermfg=11
-hi CursorLine    ctermfg=15
+hi CursorLineNr  cterm=NONE ctermbg=235
+hi CursorLine    cterm=NONE ctermbg=235
 hi Cursor        ctermfg=0 ctermbg=15
 hi Ignore        ctermfg=0
 hi IncSearch     ctermfg=15 ctermbg=0
