@@ -4,14 +4,14 @@ BUNDLE_DIR := $(VIM_DIR)/bundle
 NVIM_DIR := $(HOME)/.config/nvim
 
 .PHONY: all
-all: clean vimrc bundles airline colours snips neovim
+all: clean vimrc plugins airline colours snips neovim
 
 .PHONY: vimrc
 vimrc:
 	cp vimrc $(HOME)/.vimrc
 
-.PHONY: bundles
-bundles:
+.PHONY: plugins
+plugins:
 	mkdir -p $(BUNDLE_DIR)
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/chrisbra/Colorizer.git || true
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/jeetsukumaran/vim-buffergator.git || true
@@ -25,6 +25,8 @@ bundles:
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/vim-syntastic/syntastic.git || true
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/jelera/vim-javascript-syntax.git || true
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/airblade/vim-gitgutter.git || true
+	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/bullets-vim/bullets.vim.git || true
+	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/ryanoasis/vim-devicons.git || true
 
 .PHONY: airline
 airline:

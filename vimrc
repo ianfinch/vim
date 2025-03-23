@@ -244,6 +244,9 @@ set splitright
 
 " Set a key for colorizer (to avoid conflict with tab keys)
 nmap <unique> <Leader>c <Plug>Colorizer
+
+" Open a terminal
+:map <Leader>tt :term<CR>
 " }}}
 
 " Automatically find unit tests {{{
