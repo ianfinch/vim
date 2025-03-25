@@ -25,6 +25,7 @@ plugins:
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/vim-syntastic/syntastic.git || true
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/jelera/vim-javascript-syntax.git || true
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/airblade/vim-gitgutter.git || true
+	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/yegappan/mru.git || true
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/bullets-vim/bullets.vim.git || true
 	git -C $(BUNDLE_DIR) clone --depth 1 https://github.com/ryanoasis/vim-devicons.git || true
 

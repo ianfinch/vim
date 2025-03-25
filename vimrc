@@ -204,6 +204,12 @@ endfunction
 
 " }}}
 
+" Recent files list {{{
+
+:map <Leader>r :MRU<CR>
+
+" }}}
+
 " Keys for easier use of files, buffers and tabs {{{
 
 " Use Leader-f to open NERDTree
