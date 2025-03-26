@@ -199,8 +199,8 @@ function GuzoSaveSession ()
    endif
 endfunction
 
-:map <Leader>ss :call GuzoLoadSession()<CR>
-:map <Leader>s+ :call GuzoSaveSession()<CR>
+:map <Leader>ls :call GuzoLoadSession()<CR>
+:map <Leader>ss :call GuzoSaveSession()<CR>
 
 " }}}
 
@@ -227,7 +227,7 @@ nnoremap <S-TAB> :tabprevious<CR>
 let g:buffergator_suppress_keymaps = 1
 
 " Keep buffergator open after buffer selection
-let g:buffergator_autodismiss_on_select = 1
+let g:buffergator_autodismiss_on_select = 0
 
 " Buffergator commands to open / close the buffer display
 :map <Leader>b :BuffergatorOpen<CR>
