@@ -226,6 +226,9 @@ nnoremap <S-TAB> :tabprevious<CR>
 " Don't use buffergator's default keymap
 let g:buffergator_suppress_keymaps = 1
 
+" Keep buffergator open after buffer selection
+let g:buffergator_autodismiss_on_select = 1
+
 " Buffergator commands to open / close the buffer display
 :map <Leader>b :BuffergatorOpen<CR>
 :map <Leader>B :BuffergatorClose<CR>
