@@ -2,15 +2,22 @@ VIM_DIR := $(HOME)/.vim
 BUNDLE_DIR := $(VIM_DIR)/bundle
 
 NVIM_DIR := $(HOME)/.config/nvim
+PACK_DIR := $(NVIM_DIR)/pack/vendor/start
 
 define add_vim_plugin
 	$(eval $@_repo = $(1))
 	[ ! -d "$(BUNDLE_DIR)" ] || git -C $(BUNDLE_DIR) clone --depth 1 ${$@_repo} || true
 endef
 
+define add_nvim_plugin
+	$(eval $@_repo = $(1))
+	[ ! -d "$(PACK_DIR)" ] || git -C $(PACK_DIR) clone --depth 1 ${$@_repo} || true
+endef
+
 define add_common_plugin
 	$(eval $@_repo = $(1))
 	@$(call add_vim_plugin,${$@_repo})
+	@$(call add_nvim_plugin,${$@_repo})
 endef
 
 define mk_vim_dir
@@ -18,14 +25,22 @@ define mk_vim_dir
 	[ ! -d "$(VIM_DIR)" ] || mkdir -p $(VIM_DIR)/${$@_path}
 endef
 
+define mk_nvim_dir
+	$(eval $@_path = $(1))
+	[ ! -d "$(NVIM_DIR)" ] || mkdir -p $(NVIM_DIR)/${$@_path}
+endef
+
 .PHONY: all
 all: clean vim nvim
 
 .PHONY: vim
-vim: vimrc vim_plugins common_plugins airline colours snips
+vim: vimrc vim_plugins common
 
 .PHONY: nvim
-nvim: nvim_init nvim_plugins common_plugins
+nvim: nvim_init nvim_plugins common
+
+.PHONY: common
+common: common_plugins airline colours snips
 
 .PHONY: vimrc
 vimrc:
@@ -35,7 +50,7 @@ vimrc:
 
 .PHONY: nvim_init
 nvim_init:
-	mkdir -p $(NVIM_DIR)
+	mkdir -p $(PACK_DIR)
 	cp init.vim $(NVIM_DIR)/init.vim
 
 .PHONY: vim_plugins
@@ -66,14 +81,18 @@ common_plugins:
 .PHONY: airline
 airline:
 	@$(call add_common_plugin,https://github.com/vim-airline/vim-airline.git)
-	@$(call mk_vim_dir,/autoload/airline/themes)
-	[ ! -d "$(VIM_DIR)/autoload/airline/themes" ] || cp guzo-airline-theme.vim $(VIM_DIR)/autoload/airline/themes/guzo.vim
+	[ ! -d "$(BUNDLE_DIR)/vim-airline/autoload/airline/themes" ] || cp guzo-airline-theme.vim $(BUNDLE_DIR)/vim-airline/autoload/airline/themes/guzo.vim
+	[ ! -d "$(PACK_DIR)/vim-airline/autoload/airline/themes" ] || cp guzo-airline-theme.vim $(PACK_DIR)/vim-airline/autoload/airline/themes/guzo.vim
+
+iantheme.vim: iantheme_cterm.vim
+	cat iantheme_cterm.vim | ./add-gui-colours.sh > iantheme.vim
 
 .PHONY: colours
-colours:
+colours: iantheme.vim
 	@$(call mk_vim_dir,/colors)
-	cat iantheme.vim | ./add-gui-colours.sh > $(VIM_DIR)/colors/iantheme.vim
-	[ ! -d "$(VIM_DIR)/colors" ] || cp vividchalkian.vim $(VIM_DIR)/colors/vividchalkian.vim
+	[ ! -d "$(VIM_DIR)/colors" ] || cp iantheme.vim $(VIM_DIR)/colors/iantheme.vim
+	@$(call mk_nvim_dir,/colors)
+	[ ! -d "$(NVIM_DIR)/colors" ] || cp iantheme.vim $(NVIM_DIR)/colors/iantheme.vim
 
 .PHONY: snips
 snips:
