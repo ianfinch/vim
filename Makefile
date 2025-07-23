@@ -51,7 +51,7 @@ vimrc:
 .PHONY: nvim_init
 nvim_init:
 	mkdir -p $(PACK_DIR)
-	cp init.vim $(NVIM_DIR)/init.vim
+	cp init.lua $(NVIM_DIR)/init.lua
 
 .PHONY: vim_plugins
 vim_plugins:
