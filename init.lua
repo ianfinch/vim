@@ -122,19 +122,28 @@ vim.opt.fillchars = {
 	vert = "|",
 	fold = "-"
 }
--- TBD
--- function! NeatFoldText()
---    let foldchar = matchstr(&fillchars, 'fold:\zs.')
---    if getline(v:foldstart) == '/**'
---       let foldLabel = substitute(getline(v:foldstart + 1), '^ *\*', '//', '')
---    else
---       let foldLabel = getline(v:foldstart)
---    endif
---    let lineCount = v:foldend - v:foldstart + 1
---    return repeat('+', v:foldlevel) . '-- ' . foldLabel . " (" . lineCount . " lines) "
--- endfunction
+
+-- Function to create well formated text for the folds
+function _G.custom_fold_text()
+
+    local label = vim.fn.getline(vim.v.foldstart)
+
+    -- Handle JSDoc style comments
+    if (label == "/**") then
+
+        label = string.gsub(vim.fn.getline(vim.v.foldstart + 1), " %*", "//")
+    end
+
+    -- Remove any vim fold markers
+    label = string.gsub(label, " *{{" .. "{ *", "")
+
+    local line_count = vim.v.foldend - vim.v.foldstart + 1
+
+    return "⚡" .. label .. " (" .. line_count .. " lines) "
+end
+
 vim.opt.foldmethod = "syntax"
-vim.opt.foldtext = "NeatFoldText()"
+vim.opt.foldtext = "v:lua.custom_fold_text()"
 
 vim.g.markdown_folding = 1
 -- }}}
