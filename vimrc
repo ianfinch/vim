@@ -2,9 +2,6 @@
 
 " A bunch of basic settings {{{
 
-" A lot of this came from http://items.sjbach.com/319/configuring-vim-right
-" and https://github.com/skwp/dotfiles/blob/master/vimrc
-
 " Start off by using the standard vim settings
 set nocompatible
 
@@ -161,12 +158,6 @@ let g:vimwiki_list = [{'path': '/Users/ian/Dropbox/vimwiki/',
 " Honour modelines {{{
 set modeline
 set modelines=5
-" }}}
-
-" Ultisnips {{{
-let g:UltiSnipsExpandTrigger="<Leader>e"
-let g:UltiSnipsJumpForwardTrigger="<Leader>e"
-let g:UltiSnipsJumpBackwardTrigger="<Leader>E"
 " }}}
 
 " Session save and load shortcuts {{{

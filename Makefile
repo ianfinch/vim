@@ -31,7 +31,7 @@ define mk_nvim_dir
 endef
 
 .PHONY: all
-all: clean vim nvim
+all: clean vimrc vim_plugins nvim_init nvim_plugins common
 
 .PHONY: vim
 vim: vimrc vim_plugins common
@@ -40,7 +40,7 @@ vim: vimrc vim_plugins common
 nvim: nvim_init nvim_plugins common
 
 .PHONY: common
-common: common_plugins airline colours snips
+common: common_plugins airline colours
 
 .PHONY: vimrc
 vimrc:
@@ -93,11 +93,6 @@ colours: iantheme.vim
 	[ ! -d "$(VIM_DIR)/colors" ] || cp iantheme.vim $(VIM_DIR)/colors/iantheme.vim
 	@$(call mk_nvim_dir,/colors)
 	[ ! -d "$(NVIM_DIR)/colors" ] || cp iantheme.vim $(NVIM_DIR)/colors/iantheme.vim
-
-.PHONY: snips
-snips:
-	@$(call add_common_plugin,https://github.com/SirVer/ultisnips.git)
-	[ ! -d "$(VIM_DIR)" ] || cp -R UltiSnips $(VIM_DIR)/UltiSnips
 
 .PHONY: clean
 clean:

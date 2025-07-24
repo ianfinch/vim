@@ -144,12 +144,6 @@ vim.opt.modeline = true
 vim.opt.modelines = 5
 -- }}}
 
--- Ultisnips {{{
-vim.g.UltiSnipsExpandTrigger="<Leader>e"
-vim.g.UltiSnipsJumpForwardTrigger="<Leader>e"
-vim.g.UltiSnipsJumpBackwardTrigger="<Leader>E"
--- }}}
-
 -- Session save and load shortcuts {{{
 
 -- TBD
