@@ -6,3 +6,4 @@ require("custom.settings")
 
 require("custom.nvim-tree")
 require("custom.oil")
+require("custom.lualine")
