@@ -39,12 +39,13 @@ hi Identifier ctermfg=220
 hi link Function Identifier
 " }}}
 
-" Message highlights {{{
-hi ErrorMsg               ctermbg=1
+" Text colours {{{
+hi ErrorMsg                ctermbg=1
 hi Error       ctermfg=15  ctermbg=1
-hi Normal                   ctermfg=253 ctermbg=16
-hi Todo       ctermfg=0   ctermbg=11
-hi WarningMsg ctermfg=9
+hi Normal      ctermfg=253 ctermbg=16
+hi NormalFloat ctermfg=253 ctermbg=23
+hi Todo        ctermfg=0   ctermbg=11
+hi WarningMsg  ctermfg=9
 " }}}
 
 " Pre-processors {{{
