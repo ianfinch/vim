@@ -10,19 +10,3 @@ require("nvim-tree").setup()
 
 -- Open with f key
 vim.keymap.set("", "<Leader>f", ":NvimTreeOpen<CR>")
-
--- OR setup with some options
--- require("nvim-tree").setup({
---   sort = {
---     sorter = "case_sensitive",
---   },
---   view = {
---     width = 30,
---   },
---   renderer = {
---     group_empty = true,
---   },
---   filters = {
---     dotfiles = true,
---   },
--- })
