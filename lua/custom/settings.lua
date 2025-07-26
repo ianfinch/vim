@@ -40,31 +40,8 @@ vim.opt.autoindent = true
 -- Use ftplugins
 vim.cmd("filetype plugin on")
 
--- Autocomplete
-vim.opt.omnifunc = "syntaxcomplete#Complete"
-vim.opt.omnifunc = "javascriptcomplete#CompleteJS"
-
 -- Colour scheme
 vim.cmd("colorscheme iantheme")
-
--- Syntax highlighting
-vim.cmd([[
-syntax on
-au FileType javascript call JavaScriptFold()
-au BufRead,BufNewFile nginx.conf set ft=nginx
-]])
-
--- Enable TODO highlighting in all files
-vim.cmd([[
-autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|TBC\|TBD\|FIXME\|CHANGED\|BUG\|HACK\)')
-autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|IDEA\)')
-]])
-
--- Go back to where we were last time we quit
-vim.api.nvim_create_autocmd({"BufReadPost"}, {
-	pattern = "*",
-	command = 'silent! normal! g`"zv'
-})
 
 -- Turn on folding
 vim.opt.fillchars = {
@@ -91,7 +68,8 @@ function _G.custom_fold_text()
     return "⚡" .. label .. " (" .. line_count .. " lines) "
 end
 
-vim.opt.foldmethod = "syntax"
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldtext = "v:lua.custom_fold_text()"
 
 vim.g.markdown_folding = 1
@@ -118,3 +96,24 @@ vim.opt.splitright = true
 -- endfunction
 -- 
 -- :map <Leader>u :call OpenUnitTestFile()<CR>
+
+--
+-- Autocmds ... if this grows, may think about moving to their own file
+--
+
+-- Recognise Nginx config files
+vim.cmd([[
+au BufRead,BufNewFile nginx.conf set ft=nginx
+]])
+
+-- Enable TODO highlighting in all files
+vim.cmd([[
+autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|TBC\|TBD\|FIXME\|CHANGED\|BUG\|HACK\)')
+autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|IDEA\)')
+]])
+
+-- Go back to where we were last time we quit
+vim.api.nvim_create_autocmd({"BufReadPost"}, {
+	pattern = "*",
+	command = 'silent! normal! g`"zv'
+})
