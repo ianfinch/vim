@@ -5,5 +5,6 @@ require("custom.keymap")
 require("custom.settings")
 
 require("custom.nvim-tree")
+require("custom.nvim-treesitter")
 require("custom.oil")
 require("custom.lualine")
