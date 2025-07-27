@@ -45,7 +45,7 @@ vim.cmd("colorscheme iantheme")
 
 -- Turn on folding
 vim.opt.fillchars = {
-	vert = "|",
+	vert = "┃",
 	fold = "-"
 }
 

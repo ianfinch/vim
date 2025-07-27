@@ -23,9 +23,9 @@ local vim_ui = {
     PmenuSel = { bg = "#8787ff", fg = "#ffffff" },
     PmenuThumb = { bg = "#ffffff" },
     Search = { bg = "#262626" },
-    SignColumn = { bg = "#6c6c6c", fg = "#00ffff" },
+    SignColumn = { link = "LineNr" },
     SpecialKey = { fg = "#808080" },
-    Title = { fg = "#ff00ff" },
+    Title = { },
     ToolbarButton = { bg = "#c0c0c0", fg = "#000000" },
     ToolbarLine = { bg = "#6c6c6c" },
     Underlined = { fg = "#5fd7ff" },
@@ -53,14 +53,23 @@ local constants = {
 }
 
 local diffs = {
-    DiffAdd = { bg = "#000080" },
-    DiffChange = { bg = "#800080" },
-    DiffDelete = { bg = "#008080", fg = "#0000ff" },
-    DiffText = { bg = "#ff0000" },
+    DiffAdd = { bg = "#ccff99", fg = "#000000" },
+    DiffChange = { link = "DiffAdd" },
+    DiffDelete = { bg = "#ffcccc", fg = "#000000" },
+    DiffText = { fg = "#ff0000" },
     diffAdded = { link = "String" },
     diffLine = { link = "PreProc" },
     diffRemoved = { link = "Statement" },
     diffSubname = { link = "Comment" }
+}
+
+local git = {
+    GitSignsAddInline = { fg = "#00cc00" },
+    GitSignsChangeInline = { link = "GitSignsAddInline" },
+    GitSignsDeleteInline = { fg = "#ff0000" },
+    GitSignsAdd = { link = "DiffAdd" },
+    GitSignsChange = { link = "DiffChange" },
+    GitSignsDelete = { link = "DiffDelete" }
 }
 
 local folding = {
@@ -79,6 +88,7 @@ local text_colours = {
     Normal = { bg = "#000000", fg = "#dadada" },
     NormalNC = { bg = "#000000", fg = "#333333" },
     NormalFloat = { bg = "#073642", fg = "#dadada" },
+    FloatTitle = { link = "NormalFloat" },
     Todo = { bg = "#ffff00", fg = "#000000" },
     WarningMsg = { fg = "#ff0000" }
 }
@@ -144,6 +154,7 @@ local colours = {
     diffs = diffs,
     folding = folding,
     general_syntax = general_syntax,
+    git = git,
     identifiers = identifiers,
     pre_processors = pre_processors,
     special_characters = special_characters,
