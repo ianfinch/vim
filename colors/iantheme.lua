@@ -48,8 +48,8 @@ local constants = {
     Character = { link = "Constant" },
     Number = { link = "Constant" },
     Float = { link = "Number" },
-    String = { fg = "#5fff00" },
-    Regexp = { fg = "#008787" }
+    String = { link = "Constant" },
+    Regexp = { link = "Constant" }
 }
 
 local diffs = {
@@ -64,7 +64,7 @@ local diffs = {
 }
 
 local git = {
-    GitSignsAddInline = { fg = "#00cc00" },
+    GitSignsAddInline = { fg = "#009900" },
     GitSignsChangeInline = { link = "GitSignsAddInline" },
     GitSignsDeleteInline = { fg = "#ff0000" },
     GitSignsAdd = { link = "DiffAdd" },
