@@ -86,7 +86,7 @@ local text_colours = {
     ErrorMsg = { bg = "#800000" },
     Error = { bg = "#800000", fg = "#ffffff" },
     Normal = { bg = "#000000", fg = "#dadada" },
-    NormalNC = { bg = "#000000", fg = "#333333" },
+    NormalNC = { bg = "#000000", fg = "#dadada" },
     NormalFloat = { bg = "#073642", fg = "#dadada" },
     FloatTitle = { link = "NormalFloat" },
     Todo = { bg = "#ffff00", fg = "#000000" },

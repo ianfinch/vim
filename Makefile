@@ -1,5 +1,10 @@
-NVIM_DIR := $(HOME)/.config/nvim
-NVIM_SHARE := $(HOME)/.local/share/nvim/
+ifdef OS # Windows
+	NVIM_DIR := $${HOME}/AppData/Local/nvim
+	NVIM_SHARE := $${HOME}/AppData/Local/nvim-data
+else
+	NVIM_DIR := $${HOME}/.config/nvim
+	NVIM_SHARE := $${HOME}/.local/share/nvim/
+endif
 
 .PHONY: personal
 personal:
