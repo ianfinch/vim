@@ -18,9 +18,9 @@ local vim_ui = {
     ModeMsg = { fg = "#ffffff" },
     MoreMsg = { fg = "#00ff00" },
     NonText = { fg = "#808080" },
-    Pmenu = { bg = "#0000d7", fg = "#ffffff" },
+    Pmenu = { bg = "#073642", fg = "#dadada" },
     PmenuSbar = { bg = "#a8a8a8" },
-    PmenuSel = { bg = "#8787ff", fg = "#ffffff" },
+    PmenuSel = { bg = "#268bd2", fg = "#ffffff" },
     PmenuThumb = { bg = "#ffffff" },
     Search = { bg = "#262626" },
     SignColumn = { link = "LineNr" },
@@ -147,6 +147,12 @@ local types = {
     Typedef = { link = "Type" }
 }
 
+local lazy = {
+    LazyH1 = { bg = "#2aa198" },
+    LazyButton = { bg = "#268bd2" },
+    LazyButtonActive = { bg = "#2aa198" },
+}
+
 -- Gather all the colour sets together, ready for processing
 local colours = {
     colours = colours,
@@ -156,6 +162,7 @@ local colours = {
     general_syntax = general_syntax,
     git = git,
     identifiers = identifiers,
+    lazy = lazy,
     pre_processors = pre_processors,
     special_characters = special_characters,
     spellcheck = spellcheck,
