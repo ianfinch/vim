@@ -7,9 +7,8 @@ vim.keymap.set("n", "`", "'", { noremap = true })
 -- Cancel the current search highlight
 vim.keymap.set("", "<Leader>/", ":nohlsearch<CR>", { desc = "Clear search term" })
 
--- Shortcuts to open / close tabs
-vim.keymap.set("", "<Leader>to", ":tabnew<CR>", { desc = "Open new tab" })
-vim.keymap.set("", "<Leader>tc", ":tabclose<CR>", { desc = "Close current tab" })
+-- Shortcuts to open a tab
+vim.keymap.set("", "<Leader>ot", ":tabnew<CR>", { desc = "Open new tab" })
 
 -- Use tab / shift-tab to go through tabs
 vim.keymap.set("n", "<TAB>", ":tabnext<CR>", { noremap = true })

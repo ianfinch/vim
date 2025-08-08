@@ -8,5 +8,5 @@ vim.opt.termguicolors = true
 -- empty setup using defaults
 require("nvim-tree").setup()
 
--- Open with f key
-vim.keymap.set("", "<Leader>f", ":NvimTreeOpen<CR>", { desc = "Open file browser" })
+-- Open with o-f key
+vim.keymap.set("", "<Leader>of", ":NvimTreeOpen<CR>", { desc = "Open file browser" })

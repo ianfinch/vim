@@ -74,18 +74,9 @@ vim.g.netrw_liststyle=3
 -- Make vertical splits open on the right of the current one
 vim.opt.splitright = true
 
--- Automatically find unit tests
-
--- TBD
--- function OpenUnitTestFile ()
---    let srcFile = expand('%:p')
--- 
---    let testFile = substitute(srcFile, '/src/\([^/]*/[^/]*\)\.clj', '/test/\1_test.clj', '')
--- 
---    execute "vsplit" testFile
--- endfunction
--- 
--- :map <Leader>u :call OpenUnitTestFile()<CR>
+-- Disable providers we don't use
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
 
 --
 -- Autocmds ... if this grows, may think about moving to their own file
