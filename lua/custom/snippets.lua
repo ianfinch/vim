@@ -40,6 +40,10 @@ end
 -- Function to start snippets interaction
 local function openSnippets()
 
+    -- Store the buffer number we are in
+    local originalBuffer = vim.fn.bufnr()
+    local originalLine = vim.api.nvim_win_get_cursor(0)[1]
+
     -- Get the list of snippets
     local snippetNames = {}
     local n = 0
@@ -50,11 +54,20 @@ local function openSnippets()
     end
     table.sort(snippetNames)
 
-    -- Display the list of snippets
+    -- Function to insert snippet
     local insertSnippet = function(_, selected)
 
-        print(snippets[selected])
+        -- Convert snippet to a table
+        local snippetLines = {}
+        for chunk in string.gmatch(snippets[selected], "[^\n]+") do
+            snippetLines[#snippetLines + 1] = chunk
+        end
+
+        -- Insert the snippet
+        vim.api.nvim_buf_set_lines(originalBuffer, originalLine, originalLine, false, snippetLines)
     end
+
+    -- Display the list of snippets
     showSnippetMenu(snippetNames, insertSnippet)
 end
 
