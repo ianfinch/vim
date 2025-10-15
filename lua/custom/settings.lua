@@ -78,6 +78,9 @@ vim.opt.splitright = true
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 
+-- Disable Buffergator taking over all the keymap
+vim.g.buffergator_suppress_keymaps = 1
+
 --
 -- Autocmds ... if this grows, may think about moving to their own file
 --
