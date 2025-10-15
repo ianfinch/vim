@@ -80,14 +80,7 @@ snippets["HTML boilerplate"] = [[<!doctype html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Title goes here</title>
-        <meta name="description" content="">
-
-        <meta property="og:title" content="">
-        <meta property="og:type" content="">
-        <meta property="og:url" content="">
-        <meta property="og:image" content="">
-        <meta property="og:image:alt" content="">
+        <title>%%Title goes here%%</title>
 
         <link rel="icon" href="favicon.ico" sizes="any">
         <link rel="icon" href="icon.svg" type="image/svg+xml">
@@ -95,17 +88,15 @@ snippets["HTML boilerplate"] = [[<!doctype html>
 
         <link rel="manifest" href="site.webmanifest">
 
-        <script src="script.js" type="text/javascript" charset="utf-8"></script>
-        <link href="style.css" rel="stylesheet" type="text/css" />
+        <script src="%%script.js%%" type="text/javascript" charset="utf-8"></script>
+        <link href="%%style.css%%" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <!-- Add your site or application content here -->
         <p>Hello world! This is HTML5 Boilerplate.</p>
-
-        <script src="app.js" type="text/javascript" charset="utf-8"></script>
     </body>
 </html>]]
 
 -- Standard HTML tags
-snippets["HTML script tag"] = [[<script src="script.js" type="text/javascript" charset="utf-8"></script>]]
-snippets["HTML CSS tag"] = [[<link href="style.css" rel="stylesheet" type="text/css" />]]
+snippets["HTML script tag"] = [[<script src="%%script.js%%" type="text/javascript" charset="utf-8"></script>]]
+snippets["HTML CSS tag"] = [[<link href="%%style.css%%" rel="stylesheet" type="text/css" />]]

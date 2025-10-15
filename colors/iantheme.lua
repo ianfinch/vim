@@ -22,7 +22,7 @@ local vim_ui = {
     PmenuSbar = { bg = "#a8a8a8" },
     PmenuSel = { bg = "#268bd2", fg = "#ffffff" },
     PmenuThumb = { bg = "#ffffff" },
-    Search = { bg = "#262626" },
+    Search = { bg = "#fffda5", fg = "#000000" },
     SignColumn = { link = "LineNr" },
     SpecialKey = { fg = "#808080" },
     Title = { },
