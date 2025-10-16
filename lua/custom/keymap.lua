@@ -14,6 +14,15 @@ vim.keymap.set("", "<Leader>ot", ":tabnew<CR>", { desc = "Open new tab" })
 vim.keymap.set("n", "<TAB>", ":tabnext<CR>", { noremap = true })
 vim.keymap.set("n", "<S-TAB>", ":tabprevious<CR>", { noremap = true })
 
+-- In insert mode, insert a tab unless we're inserting a snippet
+vim.keymap.set({ "i", "s" }, "<Tab>", function()
+    if vim.snippet.active({ direction = 1 }) then
+        return "<Cmd>lua vim.snippet.jump(1)<CR>"
+    else
+        return "<Tab>"
+    end
+end, { expr = true })
+
 -- Shortcuts for horizontal and vertical split
 vim.keymap.set("", "<Leader>|", ":vsplit<CR>", { desc = "Split vertically" })
 vim.keymap.set("", "<Leader>-", ":split<CR>", { desc = "Split horizontally" })

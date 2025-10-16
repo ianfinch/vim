@@ -97,5 +97,5 @@ snippets["HTML boilerplate"] = [[<!doctype html>
 </html>]]
 
 -- Standard HTML tags
-snippets["HTML script tag"] = [[<script src="%%script.js%%" type="text/javascript" charset="utf-8"></script>]]
-snippets["HTML CSS tag"] = [[<link href="%%style.css%%" rel="stylesheet" type="text/css" />]]
+snippets["HTML script tag"] = [[        <script src="${1:script}.js" type="text/javascript" charset="utf-8"></script>]]
+snippets["HTML CSS tag"] = [[        <link href="${1:style}.css" rel="stylesheet" type="text/css" />]]
