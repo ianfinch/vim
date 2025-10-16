@@ -42,7 +42,6 @@ local function openSnippets()
 
     -- Store the buffer number we are in
     local originalBuffer = vim.fn.bufnr()
-    local originalLine = vim.api.nvim_win_get_cursor(0)[1]
 
     -- Get the list of snippets
     local snippetNames = {}
@@ -57,22 +56,22 @@ local function openSnippets()
     -- Function to insert snippet
     local insertSnippet = function(_, selected)
 
-        -- Convert snippet to a table
-        local snippetLines = {}
-        for chunk in string.gmatch(snippets[selected], "[^\n]+") do
-            snippetLines[#snippetLines + 1] = chunk
-        end
-
-        -- Insert the snippet
-        vim.api.nvim_buf_set_lines(originalBuffer, originalLine, originalLine, false, snippetLines)
+        vim.api.nvim_buf_call(originalBuffer, function() vim.snippet.expand(snippets[selected]) end)
     end
 
     -- Display the list of snippets
     showSnippetMenu(snippetNames, insertSnippet)
 end
 
--- Set up the key to open snippets
+-- Function to stop entering a snippet
+local function exitSnippet()
+
+    vim.snippet.stop()
+end
+
+-- Set up the keys to manage snippets
 vim.keymap.set("", "<Leader>os", openSnippets, { desc = "Open snippets" })
+vim.keymap.set("", "<Leader>xs", exitSnippet, { desc = "Exit a snippet" })
 
 -- HTML5 boilerplate
 snippets["HTML boilerplate"] = [[<!doctype html>
@@ -80,7 +79,7 @@ snippets["HTML boilerplate"] = [[<!doctype html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>%%Title goes here%%</title>
+        <title>${1:title}</title>
 
         <link rel="icon" href="favicon.ico" sizes="any">
         <link rel="icon" href="icon.svg" type="image/svg+xml">
@@ -88,8 +87,8 @@ snippets["HTML boilerplate"] = [[<!doctype html>
 
         <link rel="manifest" href="site.webmanifest">
 
-        <script src="%%script.js%%" type="text/javascript" charset="utf-8"></script>
-        <link href="%%style.css%%" rel="stylesheet" type="text/css" />
+        <script src="${2:script}.js" type="text/javascript" charset="utf-8"></script>
+        <link href="${3:style}.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <!-- Add your site or application content here -->
