@@ -99,3 +99,59 @@ snippets["HTML boilerplate"] = [[<!doctype html>
 -- Standard HTML tags
 snippets["HTML script tag"] = [[        <script src="${1:script}.js" type="text/javascript" charset="utf-8"></script>]]
 snippets["HTML CSS tag"] = [[        <link href="${1:style}.css" rel="stylesheet" type="text/css" />]]
+
+-- Module-based script tag
+snippets["HTML module script tag"] = [[        <script type="module">
+            import ${1:component} from "./${2:component file}.js";
+            window.addEventListener("load", () => { ${1:component}.${3:initialise}(); });
+        </script>]]
+
+-- Javascript package.json starter file
+snippets["package.json"] = [[{
+    "devDependencies": {
+        "babel-jest": "^29.7.0",
+        "jest": "^29.7.0",
+        "jsdom": "^26.1.0",
+        "serve": "^14.2.4"
+    },
+    "scripts": {
+        "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
+        "start": "npx serve"
+    },
+    "type": "module",
+    "jest": {
+        "transform": {}
+    }
+}]]
+
+-- Javascript one liners
+snippets["JS export default"] = [[export default { ${1:component} };]]
+
+-- Javascript spec file template
+snippets["JS spec file"] = [[import { jest } from "@jest/globals";
+import { JSDOM } from "jsdom";
+import fs from "fs";
+const html = fs.readFileSync("${1:page}.html").toString();
+
+// Load our script to be tested
+import ${2:component} from "./${3:component file}.js";
+
+// Initialise the page into jsdom
+const loadPage = () => {
+
+    const dom = new JSDOM(html);
+    global.document = dom.window.document;
+    global.window = dom.window;
+};
+
+// Tests
+describe("test group", () => {
+
+    beforeAll(() => {
+        loadPage();
+    });
+
+    it("tests a thing", () => {
+        expect(true).toBe(false);
+    });
+});]]
