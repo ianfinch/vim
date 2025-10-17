@@ -27,5 +27,14 @@ end, { expr = true })
 vim.keymap.set("", "<Leader>|", ":vsplit<CR>", { desc = "Split vertically" })
 vim.keymap.set("", "<Leader>-", ":split<CR>", { desc = "Split horizontally" })
 
+-- Toggle between splits being equal or not
+vim.keymap.set("", "<Leader>%", function()
+    if vim.opt.equalalways._value == false then
+        vim.opt.equalalways = true
+    else
+        vim.opt.equalalways = false
+    end
+end, { desc = "Toggle equal window splits" })
+
 -- Open a terminal
 vim.keymap.set("", "<Leader>tt", ":term<CR>", { desc = "Open terminal" })
