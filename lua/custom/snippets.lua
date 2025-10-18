@@ -106,6 +106,47 @@ snippets["HTML module script tag"] = [[        <script type="module">
             window.addEventListener("load", () => { ${1:component}.${3:initialise}(); });
         </script>]]
 
+-- Mermaid boilerplate
+snippets["Mermaid boilerplate"] = [[<!doctype html>
+<html lang="en-GB">
+    <head>
+        <meta charset="utf-8">
+        <title>Mermaid Diagram</title>
+    </head>
+    <body>
+
+        <pre class="mermaid">
+graph TD
+A[Client] --> B[Load Balancer]
+B --> C[Server1]
+B --> D[Server2]
+        </pre>
+
+        <pre class="mermaid">
+graph TD
+A[Client] -->|tcp_123| B
+B(Load Balancer)
+B -->|tcp_456| C[Server1]
+B -->|tcp_456| D[Server2]
+        </pre>
+
+        <script type="module">
+            import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    </body>
+</html>]]
+
+-- Mermaid state transition diagram
+snippets["Mermaid state diagram"] = [=[stateDiagram-v2
+    [*] --> Still
+    Still --> [*]: parked
+
+    Still --> Moving: accelerate
+    Moving --> Still: brake
+    Moving --> Crash
+    Crash --> [*]]=]
+
 -- Javascript package.json starter file
 snippets["package.json"] = [[{
     "devDependencies": {
