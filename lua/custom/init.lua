@@ -4,6 +4,7 @@ require("custom.lazy")
 require("custom.keymap")
 require("custom.settings")
 require("custom.snippets")
+require("custom.web-server")
 
 require("custom.nvim-tree")
 require("custom.nvim-treesitter")
