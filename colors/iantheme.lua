@@ -135,9 +135,9 @@ local status_line = {
 }
 
 local tab_bar = {
-    TabLineFill = { bg = "#5f005f", fg = "#ffffff" },
-    TabLineSel = { bg = "#5f00af", fg = "#ffffff" },
-    TabLine = { fg = "#ffffff" }
+    TabLine = { bg = "#5f00af", fg = "#ffffff" },
+    TabLineFill = { bg = "#5f00af", fg = "#ffffff" },
+    TabLineSel = { bg = "#875fd7", fg = "#ffff00" }
 }
 
 local types = {
