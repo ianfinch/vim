@@ -18,7 +18,7 @@ end
 local function showBufferList(options, callback)
 
     local height = 20
-    local width = 30
+    local width = 50
     local borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }
     winId = popup.create(options, {
         title = "Buffers",
@@ -46,9 +46,21 @@ local function openBufferList()
     local n = 0
     for _, bufferId in ipairs(bufferIds) do
 
+        -- Update our array index
         n = n + 1
+
+        -- Get the buffer name and take it down to the file name
         local bufferName = vim.api.nvim_buf_get_name(bufferId)
-        buffers[n] = bufferName:gsub("^.*/", "")
+        bufferName = bufferName:gsub("^.*/", "")
+
+        -- If the buffer doesn't have a name, create a placeholder
+        if bufferName == "" then
+
+            bufferName = "Unnamed buffer"
+        end
+
+        -- Add the buffer name to our array and also store the reverse
+        buffers[n] = bufferName .. " [#" .. bufferId .. "]"
         bufferLookup[buffers[n]] = bufferId
     end
 
