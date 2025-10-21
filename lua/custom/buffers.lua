@@ -59,8 +59,8 @@ local function openBufferList()
             bufferName = "Unnamed buffer"
         end
 
-        -- Add the buffer name to our array and also store the reverse
-        buffers[n] = bufferName .. " [#" .. bufferId .. "]"
+        -- Add the buffer name to our array and also store the reverse mapping
+        buffers[n] = "[" .. string.format("%02d", bufferId) .. "] " .. bufferName
         bufferLookup[buffers[n]] = bufferId
     end
 
