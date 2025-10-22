@@ -14,6 +14,25 @@ function closeBufferList()
     vim.api.nvim_win_close(winId, true)
 end
 
+-- Function to delete a buffer
+function deleteBuffer()
+
+    -- Get the current line from the popup
+    local lineUnderCursor = vim.api.nvim_get_current_line()
+
+    -- Extract the buffer number
+    local parts = vim.fn.split(lineUnderCursor, "]")
+    parts = vim.fn.split(parts[1], "[")
+    bufferNumber = tonumber(parts[1])
+
+    -- Delete the buffer
+    vim.bo[bufferNumber].buflisted = false
+    vim.api.nvim_buf_delete(bufferNumber, { unload = true })
+
+    -- Close the window
+    vim.api.nvim_win_close(winId, true)
+end
+
 -- Function to open the buffer list
 local function showBufferList(options, callback)
 
@@ -29,8 +48,13 @@ local function showBufferList(options, callback)
         borderchars = borderchars,
         callback = callback,
     })
+
+    -- Press q to quit
     local buff = vim.api.nvim_win_get_buf(winId)
     vim.api.nvim_buf_set_keymap(buff, "n", "q", "<cmd>lua closeBufferList()<CR>", { silent = false })
+
+    -- Press d to delete a buffer
+    vim.api.nvim_buf_set_keymap(buff, "n", "d", "<cmd>lua deleteBuffer()<CR>", { silent = false })
 end
 
 -- Function to start buffer interaction
@@ -61,30 +85,34 @@ local function openBufferList()
     local n = 0
     for _, bufferId in ipairs(bufferIds) do
 
-        -- Update our array index
-        n = n + 1
+        -- Check the buffer is loaded
+        if vim.api.nvim_buf_is_loaded(bufferId) then
 
-        -- Get the buffer name and take it down to the file name
-        local bufferName = vim.api.nvim_buf_get_name(bufferId)
-        bufferName = bufferName:gsub("^.*/", "")
+            -- Update our array index
+            n = n + 1
 
-        -- If the buffer doesn't have a name, create a placeholder
-        if bufferName == "" then
+            -- Get the buffer name and take it down to the file name
+            local bufferName = vim.api.nvim_buf_get_name(bufferId)
+            bufferName = bufferName:gsub("^.*/", "")
 
-            bufferName = "Unnamed buffer"
+            -- If the buffer doesn't have a name, create a placeholder
+            if bufferName == "" then
+
+                bufferName = "Unnamed buffer"
+            end
+
+            -- Add the buffer name to our array and also store the reverse mapping
+            buffers[n] = "[" .. string.format("%02d", bufferId) .. "] " .. bufferName
+
+            -- If this has a window, add that
+            if windowsByBuffer[bufferId] then
+
+                buffers[n] = buffers[n] .. " (win #" .. windowsByBuffer[bufferId] .. ")"
+            end
+
+            -- Store the buffer info
+            bufferLookup[buffers[n]] = bufferId
         end
-
-        -- Add the buffer name to our array and also store the reverse mapping
-        buffers[n] = "[" .. string.format("%02d", bufferId) .. "] " .. bufferName
-
-        -- If this has a window, add that
-        if windowsByBuffer[bufferId] then
-
-            buffers[n] = buffers[n] .. " (win #" .. windowsByBuffer[bufferId] .. ")"
-        end
-
-        -- Store the buffer info
-        bufferLookup[buffers[n]] = bufferId
     end
 
     -- Function to map the buffer
