@@ -39,6 +39,21 @@ local function openBufferList()
     -- Store the window we are in
     local originalWindow = vim.fn.win_getid()
 
+    -- Get a list of all windows and their buffers
+    local windowIds = vim.api.nvim_list_wins()
+    local windowsByBuffer = {}
+    for _, windowId in ipairs(windowIds) do
+
+        -- Get the buffer for this window
+        local bufferInWindow = vim.api.nvim_win_get_buf(windowId)
+
+        -- Get the window's number
+        local windowNumber = vim.api.nvim_win_get_number(windowId)
+
+        -- Store the info
+        windowsByBuffer[bufferInWindow] = windowNumber
+    end
+
     -- Get a list of all current buffers
     local bufferIds = vim.api.nvim_list_bufs()
     local buffers = {}
@@ -61,6 +76,14 @@ local function openBufferList()
 
         -- Add the buffer name to our array and also store the reverse mapping
         buffers[n] = "[" .. string.format("%02d", bufferId) .. "] " .. bufferName
+
+        -- If this has a window, add that
+        if windowsByBuffer[bufferId] then
+
+            buffers[n] = buffers[n] .. " (win #" .. windowsByBuffer[bufferId] .. ")"
+        end
+
+        -- Store the buffer info
         bufferLookup[buffers[n]] = bufferId
     end
 
