@@ -29,7 +29,7 @@ function deleteBuffer()
     vim.bo[bufferNumber].buflisted = false
     vim.api.nvim_buf_delete(bufferNumber, { unload = true })
 
-    -- Close the window
+    -- Close the popup window
     vim.api.nvim_win_close(winId, true)
 end
 
@@ -103,6 +103,18 @@ local function openBufferList()
 
             -- Add the buffer name to our array and also store the reverse mapping
             buffers[n] = "[" .. string.format("%02d", bufferId) .. "] " .. bufferName
+
+            -- If the buffer is modified, add that
+            if vim.bo[bufferId].modified then
+
+                buffers[n] = buffers[n] .. "+"
+            end
+
+            -- If the buffer is read-only, add that
+            if vim.bo[bufferId].readonly then
+
+                buffers[n] = buffers[n] .. ", R"
+            end
 
             -- If this has a window, add that
             if windowsByBuffer[bufferId] then
