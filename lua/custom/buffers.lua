@@ -14,8 +14,8 @@ function closeBufferList()
     vim.api.nvim_win_close(winId, true)
 end
 
--- Function to delete a buffer
-function deleteBuffer()
+-- Find the buffer number from the current line in the popup
+function getBufferNumber()
 
     -- Get the current line from the popup
     local lineUnderCursor = vim.api.nvim_get_current_line()
@@ -25,11 +25,33 @@ function deleteBuffer()
     parts = vim.fn.split(parts[1], "[")
     bufferNumber = tonumber(parts[1])
 
+    return bufferNumber
+end
+
+-- Function to delete a buffer
+function deleteBuffer()
+
+    bufferNumber = getBufferNumber()
+
     -- Delete the buffer
     vim.bo[bufferNumber].buflisted = false
     vim.api.nvim_buf_delete(bufferNumber, { unload = true })
 
     -- Close the popup window
+    vim.api.nvim_win_close(winId, true)
+end
+
+-- Function to toggle read-only on a buffer
+function readonlyBuffer()
+
+    bufferNumber = getBufferNumber()
+
+    if vim.bo[bufferNumber].readonly then
+        vim.bo[bufferNumber].readonly = false
+    else
+        vim.bo[bufferNumber].readonly = true
+    end
+
     vim.api.nvim_win_close(winId, true)
 end
 
@@ -55,6 +77,9 @@ local function showBufferList(options, callback)
 
     -- Press d to delete a buffer
     vim.api.nvim_buf_set_keymap(buff, "n", "d", "<cmd>lua deleteBuffer()<CR>", { silent = false })
+
+    -- Press r to toggle read-only
+    vim.api.nvim_buf_set_keymap(buff, "n", "r", "<cmd>lua readonlyBuffer()<CR>", { silent = false })
 end
 
 -- Function to start buffer interaction
@@ -113,7 +138,7 @@ local function openBufferList()
             -- If the buffer is read-only, add that
             if vim.bo[bufferId].readonly then
 
-                buffers[n] = buffers[n] .. ", R"
+                buffers[n] = buffers[n] .. " R"
             end
 
             -- If this has a window, add that
