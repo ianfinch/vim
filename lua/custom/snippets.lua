@@ -106,6 +106,42 @@ snippets["HTML module script tag"] = [[        <script type="module">
             window.addEventListener("load", () => { ${1:component}.${3:initialise}(); });
         </script>]]
 
+-- Markdown boilerplate
+snippets["Markdown boilerplate"] = [[<!doctype html>
+<html lang="en-GB">
+    <head>
+        <meta charset="utf-8">
+        <title>Markdown Page</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+    <body>
+
+        <pre class="markdown">
+# First section of markdown
+
+A paragraph of text
+        </pre>
+
+        <pre class="markdown">
+# Second section of markdown
+
+- List item one
+- List item two
+- List item three
+        </pre>
+
+        <script type="text/javascript">
+            var converter = new showdown.Converter();
+            converter.setOption("tables", true);
+            [...document.getElementsByClassName("markdown")].forEach(elem => {
+                const html = converter.makeHtml(elem.textContent);
+                elem.insertAdjacentHTML("afterend", html);
+                elem.style.display = "none";
+            });
+        </script>
+    </body>
+</html>]]
+
 -- Mermaid boilerplate
 snippets["Mermaid boilerplate"] = [[<!doctype html>
 <html lang="en-GB">
