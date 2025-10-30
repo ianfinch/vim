@@ -6,6 +6,9 @@ local jobId = false
 -- A buffer to write output to
 local bufferId = false
 
+-- Channel so we can write to the terminal window
+local channelId = false
+
 -- Check if a job is running
 function serverIsRunning()
 
@@ -20,9 +23,10 @@ function serverIsRunning()
 end
 
 -- Add output to the log buffer
-function log(level, msg)
+function log(msg)
 
-    vim.api.nvim_buf_set_lines(bufferId, -1, -1, true, { level .. " " .. msg })
+    vim.api.nvim_chan_send(channelId, msg)
+    vim.api.nvim_chan_send(channelId, "\n")
 end
 
 -- Start the server
@@ -43,6 +47,7 @@ function startServer()
 
         bufferId = vim.api.nvim_create_buf(true, true)
         vim.api.nvim_open_win(bufferId, false, { win = 0, split = "below" })
+        channelId = vim.api.nvim_open_term(bufferId, {})
     end
 
     -- Actually start the server
@@ -50,17 +55,17 @@ function startServer()
 
         on_stdout = function(_, data)
 
-            log("INFO", data[1])
+            log(data[1])
         end,
 
         on_stderr = function(_, data)
 
-            log("ERROR", data[1])
+            log(data[1])
         end,
 
         on_exit = function(_, exitCode)
 
-            log("INFO", string.format("Web server stopped with code %s", exitCode))
+            log(string.format("Web server stopped with code %s", exitCode))
 
             if not exitCode == 0 then
                 vim.api.nvim_err_writeln(string.format("Web server stopped with code %s", exitCode))
