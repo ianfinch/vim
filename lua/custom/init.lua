@@ -4,6 +4,7 @@ require("custom.lazy")
 require("custom.keymap")
 require("custom.settings")
 require("custom.buffers")
+require("custom.recent-files")
 require("custom.snippets")
 require("custom.web-server")
 
