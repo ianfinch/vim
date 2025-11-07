@@ -38,3 +38,21 @@ end, { desc = "Toggle equal window splits" })
 
 -- Open a terminal
 vim.keymap.set("", "<Leader>tt", ":term<CR>", { desc = "Open terminal" })
+
+-- Add a new buffer
+local function createBuffer()
+
+    local newBuffer = vim.api.nvim_create_buf(true, false)
+    vim.api.nvim_win_set_buf(0, newBuffer)
+end
+
+vim.keymap.set("", "<Leader>+b", createBuffer, { desc = "Add a new buffer" })
+
+-- Add a new scratch buffer
+local function createScratch()
+
+    local newBuffer = vim.api.nvim_create_buf(true, true)
+    vim.api.nvim_win_set_buf(0, newBuffer)
+end
+
+vim.keymap.set("", "<Leader>+s", createScratch, { desc = "Add a scratch buffer" })
