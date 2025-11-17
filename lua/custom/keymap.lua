@@ -56,3 +56,26 @@ local function createScratch()
 end
 
 vim.keymap.set("", "<Leader>+s", createScratch, { desc = "Add a scratch buffer" })
+
+-- Insert a random character
+local function insertRandomCharacter()
+
+    -- The set of characters to choose from
+    local chars = "abcdefghijklmnopqrstuvwxyz0123456789"
+
+    -- We might have a numeric prefix, so we need somewhere to build up a string of that length
+    local stringToInsert = ""
+
+    -- Choose a random character
+    math.randomseed(os.time())
+    for n = 1, math.max(1, vim.v.count) do
+        local randomOffset = math.random(string.len(chars))
+        local randomChar = string.sub(chars, randomOffset, randomOffset)
+        stringToInsert = stringToInsert .. randomChar
+    end
+
+    -- Insert at the cursor position
+    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+    vim.api.nvim_buf_set_text(0, row - 1, col, row -1, col, { stringToInsert })
+end
+vim.keymap.set("", "<Leader>ir", insertRandomCharacter, { desc = "Insert a random character from [0-9a-z]" })
