@@ -79,3 +79,17 @@ local function insertRandomCharacter()
     vim.api.nvim_buf_set_text(0, row - 1, col, row -1, col, { stringToInsert })
 end
 vim.keymap.set("", "<Leader>ir", insertRandomCharacter, { desc = "Insert a random character from [0-9a-z]" })
+
+-- Do some common unicode conversions
+vim.keymap.set("i", "--", "–", { desc = "Insert en dash" })
+vim.keymap.set("i", "---", "—", { desc = "Insert em dash" })
+vim.keymap.set("i", "...", "…", { desc = "Insert ellipsis" })
+vim.keymap.set("i", "1/4", "¼", { desc = "Insert quarter" })
+vim.keymap.set("i", "1/2", "½", { desc = "Insert half" })
+vim.keymap.set("i", "3/4", "¾", { desc = "Insert three quarters" })
+vim.keymap.set("i", "(c)", "©", { desc = "Insert copyright symbol" })
+vim.keymap.set("i", "(C)", "©", { desc = "Insert copyright symbol" })
+vim.keymap.set("i", "(r)", "®", { desc = "Insert registered symbol" })
+vim.keymap.set("i", "(R)", "®", { desc = "Insert registered symbol" })
+vim.keymap.set("i", "tm", "™", { desc = "Insert trademark symbol" })
+vim.keymap.set("i", "TM", "™", { desc = "Insert trademark symbol" })
