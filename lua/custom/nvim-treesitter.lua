@@ -21,3 +21,5 @@ require'nvim-treesitter.configs'.setup {
         enable = true,
     },
 }
+
+vim.keymap.set("", "<Leader>oT", ":InspectTree<CR>", { desc = "Open tree sitter" })
