@@ -85,17 +85,11 @@ function listSessions()
     -- Function to select a session
     function selectSession()
 
-        -- Make sure we have a session
-        if #sessions == 0 then
-
-            vim.api.nvim_win_close(popupId, true)
-            return
-        end
-
-        -- Load the session
         local selected, _ = unpack(vim.api.nvim_win_get_cursor(popupId))
         vim.api.nvim_win_close(popupId, true)
-        loadSessionFile(sessionDir .. "/" .. sessions[selected])
+        if selected <= #sessions then
+            loadSessionFile(sessionDir .. "/" .. sessions[selected])
+        end
     end
 
     -- Function to delete a session
