@@ -16,7 +16,7 @@ require("oil-git").setup({
         file = {
             added = "+",
             modified = "~",
-            renamed = "->",
+            renamed = "R",
             deleted = "D",
             copied = "C",
             conflict = "!",
@@ -25,26 +25,14 @@ require("oil-git").setup({
         },
         directory = {
             added = "*",
-            modified = "*",
-            renamed = "*",
-            deleted = "*",
-            copied = "*",
+            modified = "~",
+            renamed = "R",
+            deleted = "D",
+            copied = "C",
             conflict = "!",
-            untracked = "*",
+            untracked = "?",
             ignored = "o"
         },
-    },
-
-    -- Colors (only applied if highlight groups don't exist)
-    highlights = {
-        OilGitAdded = { fg = "#a6e3a1" },
-        OilGitModified = { fg = "#f9e2af" },
-        OilGitRenamed = { fg = "#cba6f7" },
-        OilGitDeleted = { fg = "#f38ba8" },
-        OilGitCopied = { fg = "#cba6f7" },
-        OilGitConflict = { fg = "#fab387" },
-        OilGitUntracked = { fg = "#89b4fa" },
-        OilGitIgnored = { fg = "#6c7086" },
     },
 })
 

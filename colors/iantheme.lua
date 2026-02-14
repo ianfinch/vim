@@ -153,6 +153,17 @@ local lazy = {
     LazyButtonActive = { bg = "#2aa198" },
 }
 
+local oil_git = {
+    OilGitAdded = { fg = "#ff6666" },
+    OilGitModified = { fg = "#ff6666" },
+    OilGitRenamed = { fg = "#ff6666" },
+    OilGitDeleted = { fg = "#ff6666" },
+    OilGitCopied = { fg = "#ff6666" },
+    OilGitConflict = { fg = "#ff6666" },
+    OilGitUntracked = { fg = "#ff6666" },
+    OilGitIgnored = { fg = "#ff6666" },
+}
+
 -- Gather all the colour sets together, ready for processing
 local colours = {
     colours = colours,
@@ -163,6 +174,7 @@ local colours = {
     git = git,
     identifiers = identifiers,
     lazy = lazy,
+    oil_git = oil_git,
     pre_processors = pre_processors,
     special_characters = special_characters,
     spellcheck = spellcheck,
