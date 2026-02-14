@@ -5,6 +5,7 @@ require("custom.keymap")
 require("custom.settings")
 require("custom.buffers")
 require("custom.recent-files")
+require("custom.sessions")
 require("custom.snippets")
 require("custom.web-server")
 
