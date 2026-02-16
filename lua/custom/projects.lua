@@ -56,15 +56,29 @@ local function split(phrase)
 	return result
 end
 
+-- Remove one string from the front of another
+local function removeStringFromStart(haystack, needle)
+
+    -- Check the start of the string matches what we are looking for
+    if string.sub(haystack, 0, string.len(needle)) == needle then
+
+        -- Return the remainder of the string
+        return string.sub(haystack, string.len(needle) + 1, -1)
+    end
+
+    -- If no match, return the original string
+    return haystack
+end
+
 -- Find a buffer number from its name
 local function getBufferByName(bufferName)
 
     local result = nil
-    local cwd = vim.fn.getcwd()
+    local cwd = vim.fn.getcwd() .. "/"
     local bufferIds = vim.api.nvim_list_bufs()
     for _, bufferId in ipairs(bufferIds) do
 
-        local shortName = string.gsub(vim.api.nvim_buf_get_name(bufferId), "^" .. cwd .. "/", "")
+        local shortName = removeStringFromStart(vim.api.nvim_buf_get_name(bufferId), cwd)
         shortName = string.gsub(shortName, "^%./", "")
 
         if bufferName == shortName then
