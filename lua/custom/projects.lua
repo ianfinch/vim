@@ -81,9 +81,18 @@ local function getBufferByName(bufferName)
     local bufferIds = vim.api.nvim_list_bufs()
     for _, bufferId in ipairs(bufferIds) do
 
+        -- Remove the current directory from the buffer name
         local shortName = removeStringFromStart(vim.api.nvim_buf_get_name(bufferId), cwd)
-        shortName = string.gsub(shortName, "^%." .. pathSeparator, "")
 
+        -- The short name is derived from the buffer name, which will have
+        -- OS-specific path separators, but the passed in buffer name uses Unix
+        -- file separators, so we want to convert the short name to also use
+        -- those (if they are not already)
+        if pathSeparator ~= "/" then
+            shortName = string.gsub(shortName, "%" .. pathSeparator, "/")
+        end
+
+        -- If it all matches, this is the buffer we want
         if bufferName == shortName then
             result = bufferId
         end
