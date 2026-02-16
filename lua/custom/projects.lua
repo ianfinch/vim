@@ -17,6 +17,9 @@ local popupId
 -- The ID for our file listing buffer
 local fileListBuffer = nil
 
+-- Want to work on Linux and Windows, so use an OS-specific filepath separator
+local pathSeparator = package.config:sub(1, 1)
+
 -- Function to close the project menu
 function closeProjectsMenu()
 
@@ -74,12 +77,12 @@ end
 local function getBufferByName(bufferName)
 
     local result = nil
-    local cwd = vim.fn.getcwd() .. "/"
+    local cwd = vim.fn.getcwd() .. pathSeparator
     local bufferIds = vim.api.nvim_list_bufs()
     for _, bufferId in ipairs(bufferIds) do
 
         local shortName = removeStringFromStart(vim.api.nvim_buf_get_name(bufferId), cwd)
-        shortName = string.gsub(shortName, "^%./", "")
+        shortName = string.gsub(shortName, "^%." .. pathSeparator, "")
 
         if bufferName == shortName then
             result = bufferId
@@ -146,17 +149,17 @@ local function openProjectFilesWindow(files)
         local filenameDisplay = projectFile.filepath
 
         -- If it's a directory, hide the trailing slash to prevent it being replaced by spaces
-        filenameDisplay = string.gsub(filenameDisplay, "/$", "TRAILING_SLASH")
+        filenameDisplay = string.gsub(filenameDisplay, pathSeparator .. "$", "TRAILING_SLASH")
 
         -- Now replace all directories with spaces
-        filenameDisplay = string.gsub(filenameDisplay, "[^/]*/", "  ")
+        filenameDisplay = string.gsub(filenameDisplay, "[^" .. pathSeparator .. "]*" .. pathSeparator, "  ")
 
         -- Put the trailing slash back
-        filenameDisplay = string.gsub(filenameDisplay, "TRAILING_SLASH$", "/")
+        filenameDisplay = string.gsub(filenameDisplay, "TRAILING_SLASH$", pathSeparator)
 
         -- Add an icon
         local extension, icon, highlight
-        if string.match(projectFile.filepath, "/$") then
+        if string.match(projectFile.filepath, pathSeparator .. "$") then
 
             icon = ""
             highlight = "NvimTreeFolderName"
@@ -168,7 +171,7 @@ local function openProjectFilesWindow(files)
 
             -- Create a buffer for this file
             local fileBuffer = vim.api.nvim_create_buf(true, false)
-            vim.api.nvim_buf_set_name(fileBuffer, "./" .. projectFile.filepath)
+            vim.api.nvim_buf_set_name(fileBuffer, "." .. pathSeparator .. projectFile.filepath)
 
             -- Load the template into the buffer
             vim.api.nvim_buf_set_lines(fileBuffer, -2, -1, true, split(projectFile.content))
