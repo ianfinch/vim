@@ -149,17 +149,17 @@ local function openProjectFilesWindow(files)
         local filenameDisplay = projectFile.filepath
 
         -- If it's a directory, hide the trailing slash to prevent it being replaced by spaces
-        filenameDisplay = string.gsub(filenameDisplay, pathSeparator .. "$", "TRAILING_SLASH")
+        filenameDisplay = string.gsub(filenameDisplay, "/$", "TRAILING_SLASH")
 
         -- Now replace all directories with spaces
-        filenameDisplay = string.gsub(filenameDisplay, "[^" .. pathSeparator .. "]*" .. pathSeparator, "  ")
+        filenameDisplay = string.gsub(filenameDisplay, "[^/]*/", "  ")
 
         -- Put the trailing slash back
-        filenameDisplay = string.gsub(filenameDisplay, "TRAILING_SLASH$", pathSeparator)
+        filenameDisplay = string.gsub(filenameDisplay, "TRAILING_SLASH$", "/")
 
         -- Add an icon
         local extension, icon, highlight
-        if string.match(projectFile.filepath, pathSeparator .. "$") then
+        if string.match(projectFile.filepath, "/$") then
 
             icon = ""
             highlight = "NvimTreeFolderName"
@@ -171,7 +171,7 @@ local function openProjectFilesWindow(files)
 
             -- Create a buffer for this file
             local fileBuffer = vim.api.nvim_create_buf(true, false)
-            vim.api.nvim_buf_set_name(fileBuffer, "." .. pathSeparator .. projectFile.filepath)
+            vim.api.nvim_buf_set_name(fileBuffer, projectFile.filepath)
 
             -- Load the template into the buffer
             vim.api.nvim_buf_set_lines(fileBuffer, -2, -1, true, split(projectFile.content))
