@@ -8,6 +8,9 @@ local devicons = require"nvim-web-devicons"
 -- Use Plenary for our popup
 local popup = require("plenary.popup")
 
+-- My utility functions
+local utils = require("lua/custom/utils")
+
 -- Somewhere to store our projects
 local projects = {}
 
@@ -45,34 +48,6 @@ local function showProjectsMenu(options, callback)
     vim.api.nvim_buf_set_keymap(buff, "n", "q", "<cmd>lua closeProjectsMenu()<CR>", { silent = false })
 end
 
--- Split a string into a table on newlines
-local function split(phrase)
-
-	local delimiter = "\n"
-	local result = {}
-	local i = 1
-    for str in string.gmatch(phrase .. delimiter, "([^" .. delimiter .. "]*)" .. delimiter) do
-		result[i] = str
-		i = i + 1
-	end
-
-	return result
-end
-
--- Remove one string from the front of another
-local function removeStringFromStart(haystack, needle)
-
-    -- Check the start of the string matches what we are looking for
-    if string.sub(haystack, 0, string.len(needle)) == needle then
-
-        -- Return the remainder of the string
-        return string.sub(haystack, string.len(needle) + 1, -1)
-    end
-
-    -- If no match, return the original string
-    return haystack
-end
-
 -- Find a buffer number from its name
 local function getBufferByName(bufferName)
 
@@ -82,7 +57,7 @@ local function getBufferByName(bufferName)
     for _, bufferId in ipairs(bufferIds) do
 
         -- Remove the current directory from the buffer name
-        local shortName = removeStringFromStart(vim.api.nvim_buf_get_name(bufferId), cwd)
+        local shortName = utils.removeStringFromStart(vim.api.nvim_buf_get_name(bufferId), cwd)
 
         -- The short name is derived from the buffer name, which will have
         -- OS-specific path separators, but the passed in buffer name uses Unix
@@ -183,7 +158,7 @@ local function openProjectFilesWindow(files)
             vim.api.nvim_buf_set_name(fileBuffer, projectFile.filepath)
 
             -- Load the template into the buffer
-            vim.api.nvim_buf_set_lines(fileBuffer, -2, -1, true, split(projectFile.content))
+            vim.api.nvim_buf_set_lines(fileBuffer, -2, -1, true, utils.split(projectFile.content, "\n"))
         end
         filenameDisplay = string.gsub(filenameDisplay, "^( *)", "%1" .. icon .. "  ")
 
