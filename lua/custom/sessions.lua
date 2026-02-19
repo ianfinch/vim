@@ -80,7 +80,7 @@ function listSessions()
 
         local sessionPaths = vim.split(vim.fn.glob(sessionDir .. "/*"), "\n", { trimempty=true })
         local sessions = {}
-        local sessionDirBase = sessionDir .. "/"
+        local sessionDirBase = sessionDir .. pathSeparator
         for _, session in ipairs(sessionPaths) do
             local sessionName = utils.removeStringFromStart(session, sessionDirBase)
             table.insert(sessions, sessionName)
