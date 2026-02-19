@@ -19,11 +19,12 @@ require("gitsigns").setup({
 })
 
 -- For git signs
-vim.keymap.set("", "<Leader>gd", ":Gitsigns preview_hunk<CR>", { desc = "Git diff current hunk" })
 vim.keymap.set("", "<Leader>gb", ":Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle inline git blame" })
 
 -- For fugitive
 vim.keymap.set("", "<Leader>gB", ":Git blame<CR>", { desc = "Git blame" })
-vim.keymap.set("", "<Leader>gD", ":Gvdiffsplit<CR>", { desc = "Git diff split window" })
 vim.keymap.set("", "<Leader>gg", ":Git<CR>", { desc = "Open git" })
 vim.keymap.set("", "<Leader>gl", ":Gllog<CR>", { silent = true, desc = "Git log" })
+
+-- For diffview
+vim.keymap.set("", "<Leader>gd", ":DiffviewOpen<CR>", { desc = "Git diff split window" })
