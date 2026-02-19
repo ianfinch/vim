@@ -21,7 +21,7 @@ local popupId
 local fileListBuffer = nil
 
 -- Want to work on Linux and Windows, so use an OS-specific filepath separator
-local pathSeparator = package.config:sub(1, 1)
+local pathSeparator = utils.pathSeparator()
 
 -- Function to close the project menu
 function closeProjectsMenu()

@@ -30,4 +30,10 @@ function utils.removeStringFromStart(haystack, needle)
     return haystack
 end
 
+-- Return the OS-specific path separator
+function utils.pathSeparator()
+
+    return package.config:sub(1, 1)
+end
+
 return utils

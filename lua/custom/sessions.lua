@@ -5,11 +5,18 @@
 -- Use Plenary for our popup
 local popup = require("plenary.popup")
 --
+
+-- My utility functions
+local utils = require("lua/custom/utils")
+
+-- Want to work on Linux and Windows, so use an OS-specific filepath separator
+local pathSeparator = utils.pathSeparator()
+
 -- The ID for our plenary popup
 local popupId
 
 -- Directory for our sessions
-local sessionDir = vim.fn.stdpath("data") .. "/sessions"
+local sessionDir = vim.fn.stdpath("data") .. pathSeparator .. "sessions"
 
 -- Derive a session filename, based on the current directory
 function getSessionFile()
@@ -19,7 +26,7 @@ function getSessionFile()
     local removedMultiples = string.gsub(removedNonAlphanumeric, "__*", "_")
     local removedLeading = string.gsub(removedMultiples, "^_", "")
 
-    return sessionDir .. "/" .. removedLeading
+    return sessionDir .. pathSeparator .. removedLeading
 end
 
 -- Function to save a session
@@ -73,8 +80,9 @@ function listSessions()
 
         local sessionPaths = vim.split(vim.fn.glob(sessionDir .. "/*"), "\n", { trimempty=true })
         local sessions = {}
+        local sessionDirBase = sessionDir .. "/"
         for _, session in ipairs(sessionPaths) do
-            local sessionName, _ = string.gsub(session, "^" .. sessionDir .. "/", "")
+            local sessionName = utils.removeStringFromStart(session, sessionDirBase)
             table.insert(sessions, sessionName)
         end
 
@@ -88,7 +96,7 @@ function listSessions()
         local selected, _ = unpack(vim.api.nvim_win_get_cursor(popupId))
         vim.api.nvim_win_close(popupId, true)
         if selected <= #sessions then
-            loadSessionFile(sessionDir .. "/" .. sessions[selected])
+            loadSessionFile(sessionDir .. pathSeparator .. sessions[selected])
         end
     end
 
@@ -99,7 +107,7 @@ function listSessions()
         local selected, _ = unpack(vim.api.nvim_win_get_cursor(popupId))
         local confirm = vim.fn.confirm("Delete session: " .. sessions[selected] .. "?", "&Yes\n&No", 2)
         if confirm == 1 then
-            os.remove(sessionDir .. "/" .. sessions[selected])
+            os.remove(sessionDir .. pathSeparator .. sessions[selected])
         end
 
         -- Update the session list in the popup
