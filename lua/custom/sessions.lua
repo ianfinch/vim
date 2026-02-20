@@ -7,7 +7,7 @@ local popup = require("plenary.popup")
 --
 
 -- My utility functions
-local utils = require("lua/custom/utils")
+local utils = require("custom.utils")
 
 -- Want to work on Linux and Windows, so use an OS-specific filepath separator
 local pathSeparator = utils.pathSeparator()

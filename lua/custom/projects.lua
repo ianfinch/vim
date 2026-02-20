@@ -9,7 +9,7 @@ local devicons = require"nvim-web-devicons"
 local popup = require("plenary.popup")
 
 -- My utility functions
-local utils = require("lua/custom/utils")
+local utils = require("custom.utils")
 
 -- Somewhere to store our projects
 local projects = {}
