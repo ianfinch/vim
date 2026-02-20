@@ -12,6 +12,8 @@ personal:
 	cp init.lua $(NVIM_DIR)/init.lua
 	cp -R lua $(NVIM_DIR)/
 	cp -R colors $(NVIM_DIR)/
+	mkdir -p $(NVIM_SHARE)
+	cp -R assets $(NVIM_SHARE)/
 
 .PHONY: clean
 clean:

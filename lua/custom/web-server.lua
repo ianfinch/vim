@@ -1,5 +1,8 @@
 -- Start and stop a web server (needs live-server installed)
 
+-- My utility functions
+local utils = require("custom.utils")
+
 -- Somewhere for the job ID, so we can track status
 local jobId = false
 
@@ -30,10 +33,7 @@ function log(msg)
 end
 
 -- Start the server
-function startServer()
-
-    -- Our web server command
-    local cmd = { "live-server", "--verbose" }
+function startServer(cmd)
 
     -- Only start a server if we don't already have one running
     if serverIsRunning() then
@@ -74,6 +74,21 @@ function startServer()
   })
 end
 
+-- Start a web server
+function startWebServer()
+
+    startServer({ "live-server", "--verbose" })
+end
+
+-- Start a markdown server
+function startMarkdownServer()
+
+    local pathSeparator = utils.pathSeparator()
+
+    local assetsDir = vim.fn.stdpath("data") .. pathSeparator .. "assets" .. pathSeparator
+    startServer({ "live-server", "--verbose", "--middleware=" .. assetsDir .. "markdown.js" })
+end
+
 -- Stop the server (if it's running)
 function stopServer()
 
@@ -100,5 +115,6 @@ function stopServer()
 end
 
 -- Set up keys to start and stop the server
-vim.keymap.set("", "<Leader>ow", startServer, { desc = "Start web server" })
+vim.keymap.set("", "<Leader>om", startMarkdownServer, { desc = "Start markdown server" })
+vim.keymap.set("", "<Leader>ow", startWebServer, { desc = "Start web server" })
 vim.keymap.set("", "<Leader>xw", stopServer, { desc = "Stop web server" })
