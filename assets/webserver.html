@@ -10,14 +10,18 @@
         <pre class="markdown">
 <!-- CONTENT -->
         </pre>
-        <script type="text/javascript">
+        <script type="module">
+
             var converter = new showdown.Converter();
             converter.setOption("tables", true);
+
             [...document.getElementsByClassName("markdown")].forEach(elem => {
                 const html = converter.makeHtml(elem.textContent);
                 elem.insertAdjacentHTML("afterend", html);
                 elem.style.display = "none";
             });
+
+            import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
         </script>
     </body>
 </html>
