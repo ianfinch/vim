@@ -28,6 +28,16 @@ module.exports = function(req, res, next) {
     // Where are we running
     const cwd = process.cwd();
 
+    // Check whether this is a system file
+    if (req.url.match(/^\/system\//)) {
+
+        const filepath = systemDir + path.sep + req.url.replace(/^\/system\//, "");
+        const fileContent = fs.readFileSync(filepath, { encoding: "utf8", flag: "r" });
+        res.write(fileContent);
+        res.end();
+        return;
+    }
+
     // Get the file extension
     const parsedUrl = path.parse(req.url);
     const extension = parsedUrl.ext.replace(/^\./, "");

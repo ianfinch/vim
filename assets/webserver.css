@@ -1,0 +1,143 @@
+/* Colours */
+:root {
+    --default-body-bg: #fff;
+    --default-body-fg: #000;
+    --default-body-fg-strong: dodgerblue;
+    --default-pre-bg: #ccc;
+    --default-panel-bg: #fff;
+    --default-success-bg: #c6efce;
+    --default-success-fg: #006100;
+    --default-warning-bg: #ffeb9c;
+    --default-warning-fg:#9c5700;
+    --default-failure-bg: #ffc7ce;
+    --default-failure-fg:#9c0006;
+    --chessboard-size: 600px;
+}
+
+/* CSS reset */
+* { box-sizing: border-box; }
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img,
+ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i,
+center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption,
+tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section,
+summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav,
+
+/* Style standard elements */
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  padding: 24px 32px;
+  background: var( --body-bg, var( --default-body-bg ) );
+  color: var( --body-fg, var( --default-body-fg ) );
+}
+h1, h2, h3, h4 {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+h1 {
+  font-size: 22px;
+}
+h2 {
+  font-size: 18px;
+}
+h3 {
+  font-size: 16px;
+}
+p {
+  margin-bottom: 0.5em;
+}
+em,
+i {
+  font-style: italic;
+}
+strong, b {
+  font-weight: bold;
+}
+code {
+  font-family: courier;
+}
+pre {
+  margin-bottom: 1em;
+  margin-left: 3em;
+  margin-right: 6em;
+  background: var( --pre-bg, var( --default-pre-bg ) );
+  padding: 0.5em 1em;
+}
+
+ul, ol {
+  margin-left: 3em;
+  margin-bottom: 0.5em;
+  position: relative;
+}
+
+ul > ul, ol > ol, ul > ol, ol > ul {
+  margin-top: 0.2em;
+}
+a {
+  text-decoration: none;
+  color: #0000ff;
+  cursor: pointer;
+}
+a:hover {
+  color: #cc0000;
+  text-decoration: underline;
+}
+
+/* If there's a bullet list directly after the heading, don't indent it */
+h2 + ul, h3 + ul, h4 + ul {
+    margin-left: 0;
+    list-style: inside;
+}
+
+/* Tables */
+table {
+  border: 1px solid #FFFFFF;
+  border-collapse: collapse;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 40px;
+}
+table td, table th {
+  border: 1px solid #FFFFFF;
+  padding: 3px 8px;
+}
+table tbody td {
+}
+table tr:nth-child(even) {
+  background: #D0E4F5;
+}
+table thead {
+  background: #0B6FA4;
+  border-bottom: 5px solid #FFFFFF;
+}
+table thead th {
+  font-weight: bold;
+  color: #FFFFFF;
+  border-left: 2px solid #FFFFFF;
+}
+table thead th:first-child {
+  border-left: none;
+}
+
+table tfoot {
+  font-weight: bold;
+  background: #D0E4F5;
+  border-top: 3px solid #444444;
+}
+table tfoot td {
+}
+
+/* Mermaid diagrams we want a plain background */
+pre.mermaid {
+    background: transparent;
+}
