@@ -136,5 +136,5 @@ end
 
 -- Set up keys to save and load sessions
 vim.keymap.set("", "<Leader>ss", saveSession, { desc = "Save the current session" })
-vim.keymap.set("", "<Leader>sl", loadSession, { desc = "Load a saved session" })
-vim.keymap.set("", "<Leader>s?", listSessions, { desc = "List saved sessions" })
+vim.keymap.set("", "<Leader>sr", loadSession, { desc = "Restore session for this directory" })
+vim.keymap.set("", "<Leader>sl", listSessions, { desc = "List saved sessions" })
