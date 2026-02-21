@@ -4,10 +4,12 @@
 
 // List of file extensions to pass through unchanged
 const passThrough = [
+    "css",
     "gif",
     "htm",
     "html",
     "jpg",
+    "js",
     "pdf",
     "png"
 ];
@@ -15,6 +17,10 @@ const passThrough = [
 // We need to manipulate file paths
 const fs = require("fs");
 const path = require("node:path");
+
+// Read in our HTML template
+const html = fs.readFileSync(systemDir + path.sep + "webserver.html").toString().split("<!-- CONTENT -->");
+console.log(html);
 
 // Actual middleware function
 module.exports = function(req, res, next) {
@@ -41,15 +47,7 @@ module.exports = function(req, res, next) {
     const fileContent = fs.readFileSync(filepath, { encoding: "utf8", flag: "r" });
 
     // Render as HTML and embed the file contents
-    res.write('<!doctype html>');
-    res.write('<html lang="en-GB">');
-    res.write('    <head>');
-    res.write('        <meta charset="utf-8">');
-    res.write("        <title>" + filename + "</title>");
-    res.write('        <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js" type="text/javascript" charset="utf-8"></script>');
-    res.write('    </head>');
-    res.write('    <body>');
-    res.write('        <pre class="markdown">');
+    res.write(html[0].replace("<!-- TITLE -->", filename));
 
     // If it's markdown, we render it
     if (extension === "md") {
@@ -65,17 +63,6 @@ module.exports = function(req, res, next) {
     }
 
     // Remainder of the HTML we need
-    res.write('        </pre>');
-    res.write('        <script type="text/javascript">');
-    res.write('            var converter = new showdown.Converter();');
-    res.write('            converter.setOption("tables", true);');
-    res.write('            [...document.getElementsByClassName("markdown")].forEach(elem => {');
-    res.write('                const html = converter.makeHtml(elem.textContent);');
-    res.write('                elem.insertAdjacentHTML("afterend", html);');
-    res.write('                elem.style.display = "none";');
-    res.write('            });');
-    res.write('        </script>');
-    res.write('    </body>');
-    res.write('</html>');
+    res.write(html[1]);
     res.end();
 }

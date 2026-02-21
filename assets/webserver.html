@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en-GB">
+    <head>
+        <meta charset="utf-8">
+        <title><!-- TITLE --></title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+    <body>
+        <pre class="markdown">
+<!-- CONTENT -->
+        </pre>
+        <script type="text/javascript">
+            var converter = new showdown.Converter();
+            converter.setOption("tables", true);
+            [...document.getElementsByClassName("markdown")].forEach(elem => {
+                const html = converter.makeHtml(elem.textContent);
+                elem.insertAdjacentHTML("afterend", html);
+                elem.style.display = "none";
+            });
+        </script>
+    </body>
+</html>
