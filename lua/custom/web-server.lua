@@ -77,16 +77,10 @@ end
 -- Start a web server
 function startWebServer()
 
-    startServer({ "live-server", "--verbose" })
-end
-
--- Start a markdown server
-function startMarkdownServer()
-
     local pathSeparator = utils.pathSeparator()
 
     local assetsDir = vim.fn.stdpath("data") .. pathSeparator .. "assets" .. pathSeparator
-    startServer({ "live-server", "--verbose", "--middleware=" .. assetsDir .. "markdown.js" })
+    startServer({ "live-server", "--verbose", "--middleware=" .. assetsDir .. "webserver.js" })
 end
 
 -- Stop the server (if it's running)
@@ -115,6 +109,5 @@ function stopServer()
 end
 
 -- Set up keys to start and stop the server
-vim.keymap.set("", "<Leader>om", startMarkdownServer, { desc = "Start markdown server" })
-vim.keymap.set("", "<Leader>ow", startWebServer, { desc = "Start web server" })
+vim.keymap.set("", "<Leader>+w", startWebServer, { desc = "Start web server" })
 vim.keymap.set("", "<Leader>xw", stopServer, { desc = "Stop web server" })
