@@ -36,6 +36,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav,
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
+  max-width: 1000px;
   padding: 24px 32px;
   background: var( --body-bg, var( --default-body-bg ) );
   color: var( --body-fg, var( --default-body-fg ) );
