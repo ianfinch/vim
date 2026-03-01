@@ -118,3 +118,6 @@ vim.keymap.del("", "<Leader>rg")
 vim.keymap.del("", "<Leader>rw")
 vim.keymap.set("", "<Leader>of", ":Rg<CR>", { desc = "Find using ripgrep" })
 vim.keymap.set("", "<Leader>oF", ":Rg <cword><CR>", { desc = "Find current word" })
+
+-- Run a curl command via Resty
+vim.keymap.set({ "n", "v" }, "<Leader>oc", ":Resty run<CR>", { desc = "Curl using Resty" })
