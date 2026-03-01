@@ -112,3 +112,9 @@ end
 
 vim.keymap.set("", "<Leader>+u", enableUnicodeKeymaps, { desc = "Enable unicode shortcuts" })
 vim.keymap.set("", "<Leader>xu", removeUnicodeKeymaps, { desc = "Remove unicode shortcuts" })
+
+-- Enable our ripgrep keymaps
+vim.keymap.del("", "<Leader>rg")
+vim.keymap.del("", "<Leader>rw")
+vim.keymap.set("", "<Leader>of", ":Rg<CR>", { desc = "Find using ripgrep" })
+vim.keymap.set("", "<Leader>oF", ":Rg <cword><CR>", { desc = "Find current word" })
