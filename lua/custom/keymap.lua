@@ -116,8 +116,8 @@ vim.keymap.set("", "<Leader>xu", removeUnicodeKeymaps, { desc = "Remove unicode 
 -- Enable our ripgrep keymaps
 vim.keymap.del("", "<Leader>rg")
 vim.keymap.del("", "<Leader>rw")
-vim.keymap.set("", "<Leader>of", ":Rg<CR>", { desc = "Find using ripgrep" })
-vim.keymap.set("", "<Leader>oF", ":Rg <cword><CR>", { desc = "Find current word" })
+vim.keymap.set("", "<Leader>o/", ":Rg<CR>", { desc = "Find using ripgrep" })
+vim.keymap.set("", "<Leader>o?", ":Rg <cword><CR>", { desc = "Find current word" })
 
 -- Run a curl command via Resty
 vim.keymap.set({ "n", "v" }, "<Leader>oc", ":Resty run<CR>", { desc = "Curl using Resty" })
