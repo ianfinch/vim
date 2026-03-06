@@ -27,4 +27,12 @@ vim.keymap.set("", "<Leader>gg", ":Git<CR>", { desc = "Open git" })
 vim.keymap.set("", "<Leader>gl", ":Gllog<CR>", { silent = true, desc = "Git log" })
 
 -- For diffview
-vim.keymap.set("", "<Leader>gd", ":DiffviewOpen<CR>", { desc = "Git diff split window" })
+local function openGitDiff()
+
+    if vim.v.count == 0 then
+        vim.cmd("DiffviewOpen")
+    else
+        vim.cmd("DiffviewOpen HEAD~" .. vim.v.count)
+    end
+end
+vim.keymap.set("", "<Leader>gd", openGitDiff, { desc = "Git diff split window" })
