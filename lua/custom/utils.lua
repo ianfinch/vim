@@ -36,4 +36,10 @@ function utils.pathSeparator()
     return package.config:sub(1, 1)
 end
 
+-- Return the current time in ISO 8601 format
+function utils.timestamp()
+
+    return os.date("%Y-%m-%dT%H:%M:%S")
+end
+
 return utils
