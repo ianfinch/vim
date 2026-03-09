@@ -24,7 +24,7 @@ vim.keymap.set("", "<Leader>gb", ":Gitsigns toggle_current_line_blame<CR>", { de
 -- For fugitive
 vim.keymap.set("", "<Leader>gB", ":Git blame<CR>", { desc = "Git blame" })
 vim.keymap.set("", "<Leader>gg", ":Git<CR>", { desc = "Open git" })
-vim.keymap.set("", "<Leader>gl", ":Gllog<CR>", { silent = true, desc = "Git log" })
+vim.keymap.set("", "<Leader>gl", ":tabnew git log<CR>:Gllog<CR>", { silent = true, desc = "Git log" })
 
 -- For diffview
 local function openGitDiff()
