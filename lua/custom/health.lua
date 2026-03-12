@@ -3,6 +3,10 @@
 --
 local M = {}
 
+-- Set up variables we will use later
+local pathSeparator = package.config:sub(1, 1)
+local dataDir = vim.fn.stdpath("data")
+
 -- Test whether a dependency is present
 local function check_dependency(name, module)
 
@@ -23,6 +27,17 @@ local function check_external(cmd)
     end
 end
 
+-- Check whether a file exists
+local function check_file_exists(filename)
+
+    local fullpath = dataDir .. pathSeparator .. filename
+    if vim.uv.fs_stat(fullpath) then
+        vim.health.ok(filename .. " file exists")
+    else
+        vim.health.error(filename .. " file does not exist")
+    end
+end
+
 -- Need to return a check() function for this to be detected
 M.check = function()
 
@@ -31,6 +46,12 @@ M.check = function()
     check_dependency("Popup", "plenary.popup")
     check_dependency("Ian's utils", "custom.utils")
     check_external("rg")
+
+    vim.health.start("Checking web server")
+    check_external("live-server")
+    check_file_exists("assets" .. pathSeparator .. "webserver.html")
+    check_file_exists("assets" .. pathSeparator .. "webserver.css")
+    check_file_exists("assets" .. pathSeparator .. "webserver.js")
 end
 
 return M
