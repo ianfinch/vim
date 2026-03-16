@@ -11,7 +11,8 @@ const passThrough = [
     "jpg",
     "js",
     "pdf",
-    "png"
+    "png",
+    "svg"
 ];
 
 // We need to manipulate file paths

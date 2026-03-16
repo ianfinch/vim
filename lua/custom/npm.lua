@@ -11,12 +11,12 @@ local bufferId = false
 local channelId = false
 
 -- Run a command and send the output to a buffer
-local function runCommand(cmd)
+local function runCommand(cmd, hiddenArgs)
 
     -- Handle return in the npm buffer
     function npmHandleReturn()
         local arg = vim.fn.expand("<cword>")
-        runCommand("npm run " .. arg)
+        runCommand("npm run " .. arg, " --color always")
     end
 
     -- Utility function to write output to buffer
@@ -51,7 +51,7 @@ local function runCommand(cmd)
     vim.api.nvim_win_set_buf(0, bufferId)
 
     -- Now we can run the command
-    jobId = vim.fn.jobstart(cmd .. " --color always", {
+    jobId = vim.fn.jobstart(cmd .. hiddenArgs, {
 
         on_stdout = function(_, data)
             writeOutput(data[1])
@@ -74,7 +74,7 @@ end
 function getNpmCommands()
 
     -- Get a list of available commands
-    runCommand("npm run")
+    runCommand("npm run", " --color always")
 end
 
 -- Define a key to start our npm process
@@ -83,6 +83,13 @@ vim.keymap.set("", "<Leader>on", getNpmCommands, { desc = "Run npm commands" })
 -- Create an Npm command within neovim
 local function handleNpmCommand(passedIn)
 
-    runCommand("npm " .. passedIn.args)
+    runCommand("npm " .. passedIn.args, " --color always")
 end
 vim.api.nvim_create_user_command("Npm", handleNpmCommand, { nargs = "*", desc = "Allow npm commands direct from neovim" })
+
+-- Create an Npx command within neovim
+local function handleNpxCommand(passedIn)
+
+    runCommand("npx " .. passedIn.args, "")
+end
+vim.api.nvim_create_user_command("Npx", handleNpxCommand, { nargs = "*", desc = "Allow npx commands direct from neovim" })
