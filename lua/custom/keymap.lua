@@ -1,3 +1,6 @@
+-- Use popup a couple of times
+local popup = require("plenary.popup")
+
 -- Make single quote jump to marked character instead of marked line.  We will
 -- want to do this much more often - and single quote is easier to hit than
 -- backtick.
@@ -84,9 +87,39 @@ vim.keymap.set("", "<Leader>ir", insertRandomCharacter, { desc = "Insert a rando
 -- Easy access to unicode characters
 local function displayUnicodeCharacters()
 
-    local chars = "– — … ¼ ½ ¾ © ® │ ─ ┌ ┐ └ ┘ ┬ ├"
-    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-    vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { chars })
+    -- Open a popup to select a character
+    local chars = "– — … ¼ ½ ¾ © ® │ ─ ┌ ┬ ┐ └ ┴ ┘ ├ ┼ ┤"
+    local height = 1
+    local width = string.len(chars)
+    local borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }
+    local unicodePopupId = popup.create(chars, {
+        title = "Unicode",
+        line = math.floor(((vim.o.lines - height) / 2) - 1),
+        col = math.floor((vim.o.columns - width) / 2),
+        minwidth = width,
+        minheight = height,
+        borderchars = borderchars
+    })
+
+    -- Insert a character from the popup
+    function insertUnicodeCharacter()
+
+        -- Find the character
+        local col = vim.api.nvim_win_get_cursor(0)[2]
+        local char = vim.api.nvim_get_current_line():sub(col + 1, col + 4)
+
+        -- Close the popup
+        vim.api.nvim_win_close(unicodePopupId, true)
+
+        -- Insert the character
+        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+        vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { char })
+    end
+
+    local buff = vim.api.nvim_win_get_buf(unicodePopupId)
+    vim.api.nvim_buf_set_keymap(buff, "n", "<CR>", ":lua insertUnicodeCharacter()<CR>", { silent = true })
+    vim.api.nvim_buf_set_keymap(buff, "n", "q", ":lua vim.api.nvim_win_close(0, true)<CR>", { silent = true })
+
 end
 vim.keymap.set("", "<Leader>u", displayUnicodeCharacters, { desc = "Insert unicode characters" })
 

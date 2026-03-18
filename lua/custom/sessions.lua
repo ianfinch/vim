@@ -4,7 +4,6 @@
 
 -- Use Plenary for our popup
 local popup = require("plenary.popup")
---
 
 -- My utility functions
 local utils = require("custom.utils")
