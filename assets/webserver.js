@@ -74,7 +74,7 @@ module.exports = function(req, res, next) {
     const fileContent = fs.readFileSync(filepath, { encoding: "utf8", flag: "r" });
 
     // Render as HTML and embed the file contents
-    res.write(html[0].replace("<!-- TITLE -->", filename));
+    res.write(html[0].replace(/<!-- TITLE -->/g, filename));
 
     // If it's markdown, we render it
     if (extension === "md") {
@@ -83,7 +83,6 @@ module.exports = function(req, res, next) {
     // Anything else we display as text
     } else {
 
-        res.write("# " + filename + "\n");
         res.write("```\n");
         res.write(fileContent);
         res.write("```\n");

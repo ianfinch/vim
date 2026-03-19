@@ -11,6 +11,7 @@
     --default-failure-bg: #ffc7ce;
     --default-failure-fg:#9c0006;
     --default-border-bg: #999;
+    --default-header-bg: #ccc;
 }
 
 /* CSS reset */
@@ -29,7 +30,6 @@ summary, time, mark, audio, video {
   font: inherit;
   vertical-align: baseline;
 }
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav,
 
 /* Style standard elements */
 body {
@@ -108,6 +108,14 @@ h2 + ul, h3 + ul, h4 + ul {
     list-style: inside;
 }
 
+/* Header */
+header {
+    background: var( --header-bg, var( --default-header-bg ) );
+    font-family: "Courier New", monospace;
+    margin-bottom: 1em;
+    padding: 0.5em 1em;
+}
+
 /* Tables */
 table {
   border-collapse: collapse;
@@ -123,7 +131,7 @@ table td, table th {
 }
 
 table thead {
-  background: #ccc;
+  background: var( --header-bg, var( --default-header-bg ) );
   font-weight: bold;
   color: #000;
 }
