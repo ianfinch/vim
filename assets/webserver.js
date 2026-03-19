@@ -21,7 +21,6 @@ const path = require("node:path");
 
 // Read in our HTML template
 const html = fs.readFileSync(systemDir + path.sep + "webserver.html").toString().split("<!-- CONTENT -->");
-console.log(html);
 
 // Actual middleware function
 module.exports = function(req, res, next) {
@@ -34,6 +33,15 @@ module.exports = function(req, res, next) {
 
         const filepath = systemDir + path.sep + req.url.replace(/^\/system\//, "");
         const fileContent = fs.readFileSync(filepath, { encoding: "utf8", flag: "r" });
+        res.write(fileContent);
+        res.end();
+        return;
+    }
+
+    // Check for favicon
+    if (req.url === "/favicon.ico") {
+        const filepath = systemDir + path.sep + "favicon.ico";
+        const fileContent = fs.readFileSync(filepath, { flag: "r" });
         res.write(fileContent);
         res.end();
         return;

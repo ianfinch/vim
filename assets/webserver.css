@@ -3,15 +3,13 @@
     --default-body-bg: #fff;
     --default-body-fg: #000;
     --default-body-fg-strong: dodgerblue;
-    --default-pre-bg: #ccc;
-    --default-panel-bg: #fff;
+    --default-pre-bg: #fff;
     --default-success-bg: #c6efce;
     --default-success-fg: #006100;
     --default-warning-bg: #ffeb9c;
     --default-warning-fg:#9c5700;
     --default-failure-bg: #ffc7ce;
     --default-failure-fg:#9c0006;
-    --chessboard-size: 600px;
 }
 
 /* CSS reset */
@@ -55,6 +53,7 @@ h3 {
 }
 p {
   margin-bottom: 0.5em;
+  max-width: 960px;
 }
 em,
 i {
@@ -101,40 +100,22 @@ h2 + ul, h3 + ul, h4 + ul {
 
 /* Tables */
 table {
-  border: 1px solid #FFFFFF;
   border-collapse: collapse;
   display: inline-block;
   vertical-align: top;
   margin-right: 40px;
+  margin-bottom: 1.5em;
 }
 table td, table th {
-  border: 1px solid #FFFFFF;
+  border: 1px solid #999;
   padding: 3px 8px;
 }
 table tbody td {
 }
-table tr:nth-child(even) {
-  background: #D0E4F5;
-}
 table thead {
-  background: #0B6FA4;
-  border-bottom: 5px solid #FFFFFF;
-}
-table thead th {
+  background: #ccc;
   font-weight: bold;
-  color: #FFFFFF;
-  border-left: 2px solid #FFFFFF;
-}
-table thead th:first-child {
-  border-left: none;
-}
-
-table tfoot {
-  font-weight: bold;
-  background: #D0E4F5;
-  border-top: 3px solid #444444;
-}
-table tfoot td {
+  color: #000;
 }
 
 /* Mermaid diagrams we want a plain background */
