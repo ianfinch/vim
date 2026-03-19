@@ -10,6 +10,7 @@
     --default-warning-fg:#9c5700;
     --default-failure-bg: #ffc7ce;
     --default-failure-fg:#9c0006;
+    --default-border-bg: #999;
 }
 
 /* CSS reset */
@@ -34,13 +35,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav,
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
+  line-height: 18px;
   padding: 24px 32px;
   background: var( --body-bg, var( --default-body-bg ) );
   color: var( --body-fg, var( --default-body-fg ) );
 }
 h1, h2, h3, h4 {
   font-weight: bold;
-  margin-bottom: 0.5em;
+  margin-bottom: 1em;
 }
 h1 {
   font-size: 22px;
@@ -52,7 +54,7 @@ h3 {
   font-size: 16px;
 }
 p {
-  margin-bottom: 0.5em;
+  margin-bottom: 1em;
   max-width: 960px;
 }
 em,
@@ -75,13 +77,14 @@ pre {
 
 ul, ol {
   margin-left: 3em;
-  margin-bottom: 0.5em;
+  margin-bottom: 1em;
   position: relative;
 }
 
 ul > ul, ol > ol, ul > ol, ol > ul {
   margin-top: 0.2em;
 }
+
 a {
   text-decoration: none;
   color: #0000ff;
@@ -90,6 +93,13 @@ a {
 a:hover {
   color: #cc0000;
   text-decoration: underline;
+}
+
+hr {
+    margin-bottom: 1em;
+    border-style: solid;
+    border-width: 1px 0 0 0;
+    border-color: var ( --border-bg, var ( --default-border-bg ) );
 }
 
 /* If there's a bullet list directly after the heading, don't indent it */
@@ -106,12 +116,12 @@ table {
   margin-right: 40px;
   margin-bottom: 1.5em;
 }
+
 table td, table th {
-  border: 1px solid #999;
+  border: 1px solid var( --border-bg, var( --default-border-bg ) );
   padding: 3px 8px;
 }
-table tbody td {
-}
+
 table thead {
   background: #ccc;
   font-weight: bold;

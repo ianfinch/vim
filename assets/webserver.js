@@ -2,6 +2,14 @@
  * Middleware so I can use non-web files from live-server
  */
 
+// Our neovim data directory?
+// let systemDir = /* INJECTED BY MAKEFILE */;
+
+// Handle situation where Makefile injects a Unix path, but we need a Windows one
+if (systemDir.match(/^\/c\//)) {
+    systemDir = systemDir.replace(/^\/c/, "C:").replace(/\//g, "\\\\");
+}
+
 // List of file extensions to pass through unchanged
 const passThrough = [
     "css",
