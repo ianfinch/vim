@@ -11,7 +11,8 @@
     --default-failure-bg: #ffc7ce;
     --default-failure-fg:#9c0006;
     --default-border-bg: #999;
-    --default-header-bg: #ccc;
+    --default-table-header-bg: #ccc;
+    --default-header-bg: gold
 }
 
 /* CSS reset */
@@ -112,6 +113,7 @@ h2 + ul, h3 + ul, h4 + ul {
 header {
     background: var( --header-bg, var( --default-header-bg ) );
     font-family: "Courier New", monospace;
+    font-weight: bold;
     margin-bottom: 1em;
     padding: 0.5em 1em;
 }
@@ -131,7 +133,7 @@ table td, table th {
 }
 
 table thead {
-  background: var( --header-bg, var( --default-header-bg ) );
+  background: var( --table-header-bg, var( --default-table-header-bg ) );
   font-weight: bold;
   color: #000;
 }
