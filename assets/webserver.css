@@ -68,7 +68,7 @@ p code, li code {
 }
 
 pre {
-    display: inline-block;
+    display: table; /* Table lets us reduce to content width, but still be a block */
     background: var( --pre-bg, var( --default-pre-bg ) );
     padding: 0.5em 1em;
     margin-bottom: 16px;
