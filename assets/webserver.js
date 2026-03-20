@@ -78,7 +78,7 @@ module.exports = function(req, res, next) {
                                       .replace(/>/g, "&gt;");
 
     // Render as HTML and embed the file contents
-    res.write(html[0].replace(/<!-- TITLE -->/g, filename));
+    res.write(html[0].replace(/<!-- TITLE -->/g, parsedUrl.dir + path.sep + filename));
 
     // If it's markdown, we render it
     if (extension === "md") {
