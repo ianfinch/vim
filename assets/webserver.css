@@ -3,7 +3,7 @@
     --default-body-bg: #fff;
     --default-body-fg: #000;
     --default-body-fg-strong: dodgerblue;
-    --default-pre-bg: #fff;
+    --default-pre-bg: aliceblue;
     --default-success-bg: #c6efce;
     --default-success-fg: #006100;
     --default-warning-bg: #ffeb9c;
@@ -12,7 +12,7 @@
     --default-failure-fg:#9c0006;
     --default-border-bg: #999;
     --default-table-header-bg: #ccc;
-    --default-header-bg: gold
+    --default-header-bg: palegreen
 }
 
 /* CSS reset */
@@ -35,51 +35,49 @@ summary, time, mark, audio, video {
 /* Style standard elements */
 body {
   font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-  line-height: 18px;
-  padding: 24px 32px;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 12px 16px;
   background: var( --body-bg, var( --default-body-bg ) );
   color: var( --body-fg, var( --default-body-fg ) );
 }
-h1, h2, h3, h4 {
-  font-weight: bold;
-  margin-bottom: 1em;
-}
-h1 {
-  font-size: 22px;
-}
-h2 {
-  font-size: 18px;
-}
-h3 {
-  font-size: 16px;
-}
+
+h1 { font-size: 32px; font-weight: 400; margin-bottom: 16px; }
+h2 { font-size: 24px; font-weight: 400; margin-bottom: 16px; }
+h3 { font-size: 20px; font-weight: 400; margin-bottom: 16px; }
+
 p {
-  margin-bottom: 1em;
+  margin-bottom: 16px;
   max-width: 960px;
 }
-em,
-i {
-  font-style: italic;
-}
-strong, b {
-  font-weight: bold;
-}
+
+em, i { font-style: italic; }
+strong, b { font-weight: bold; }
+
 code {
-  font-family: courier;
+    font-family: "Courier New", monospace;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    padding-top: 4px;
 }
+
+p > code {
+    background: var( --pre-bg, var( --default-pre-bg ) );
+    border-radius: 4px;
+}
+
 pre {
-  margin-bottom: 1em;
-  margin-left: 3em;
-  margin-right: 6em;
   background: var( --pre-bg, var( --default-pre-bg ) );
   padding: 0.5em 1em;
+  margin-bottom: 16px;
 }
 
 ul, ol {
   margin-left: 3em;
   margin-bottom: 1em;
   position: relative;
+  max-width: 960px;
 }
 
 ul > ul, ol > ol, ul > ol, ol > ul {
@@ -88,11 +86,11 @@ ul > ul, ol > ol, ul > ol, ol > ul {
 
 a {
   text-decoration: none;
-  color: #0000ff;
+  color: royalblue;
   cursor: pointer;
 }
 a:hover {
-  color: #cc0000;
+  color: firebrick;
   text-decoration: underline;
 }
 
@@ -114,6 +112,8 @@ header {
     background: var( --header-bg, var( --default-header-bg ) );
     font-family: "Courier New", monospace;
     font-weight: bold;
+    color: black;
+    border: 1px solid black;
     margin-bottom: 1em;
     padding: 0.5em 1em;
 }
@@ -136,6 +136,11 @@ table thead {
   background: var( --table-header-bg, var( --default-table-header-bg ) );
   font-weight: bold;
   color: #000;
+}
+
+blockquote {
+    border-left: 0.25em solid var( --border-bg, var( --default-border-bg ) );
+    padding: 0 0 0 1em;
 }
 
 /* Mermaid diagrams we want a plain background */

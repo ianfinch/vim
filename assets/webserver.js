@@ -69,22 +69,26 @@ module.exports = function(req, res, next) {
         return
     }
 
+    // From here on down, we are treating as markdown
     // Work out the name of this page and get the content
     const filename = parsedUrl.base;
     const fileContent = fs.readFileSync(filepath, { encoding: "utf8", flag: "r" });
+    const escapedContent = fileContent.replace(/&/g, "&amp;")
+                                      .replace(/</g, "&lt;")
+                                      .replace(/>/g, "&gt;");
 
     // Render as HTML and embed the file contents
     res.write(html[0].replace(/<!-- TITLE -->/g, filename));
 
     // If it's markdown, we render it
     if (extension === "md") {
-        res.write(fileContent);
+        res.write(escapedContent);
 
     // Anything else we display as text
     } else {
 
         res.write("```\n");
-        res.write(fileContent);
+        res.write(escapedContent);
         res.write("```\n");
     }
 
