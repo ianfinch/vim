@@ -3,7 +3,7 @@
     --default-body-bg: #fff;
     --default-body-fg: #000;
     --default-body-fg-strong: dodgerblue;
-    --default-pre-bg: aliceblue;
+    --default-pre-bg: #efefef;
     --default-success-bg: #c6efce;
     --default-success-fg: #006100;
     --default-warning-bg: #ffeb9c;
@@ -147,6 +147,7 @@ blockquote {
 }
 
 /* Mermaid diagrams we want a plain background */
-pre.mermaid {
+pre:has(> code.mermaid) {
     background: transparent;
+    border: 1px solid var( --border-bg, var( --default-border-bg ) );
 }

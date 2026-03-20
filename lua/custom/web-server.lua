@@ -12,6 +12,9 @@ local bufferId = false
 -- Channel so we can write to the terminal window
 local channelId = false
 
+-- The window displaying our server log
+local windowId = false
+
 -- Check if a job is running
 function serverIsRunning()
 
@@ -28,8 +31,13 @@ end
 -- Add output to the log buffer
 function log(msg)
 
+    -- Display the message
     vim.api.nvim_chan_send(channelId, msg)
     vim.api.nvim_chan_send(channelId, "\n")
+
+    -- Scroll down to the end
+    local lines = vim.api.nvim_buf_line_count(bufferId)
+    vim.api.nvim_win_set_cursor(windowId, { lines, 0 })
 end
 
 -- Start the server
@@ -46,7 +54,7 @@ function startServer(cmd)
     if not bufferId then
 
         bufferId = vim.api.nvim_create_buf(true, true)
-        vim.api.nvim_open_win(bufferId, false, { win = 0, split = "below" })
+        windowId = vim.api.nvim_open_win(bufferId, false, { win = 0, split = "below" })
         channelId = vim.api.nvim_open_term(bufferId, {})
     end
 
