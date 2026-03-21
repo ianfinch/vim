@@ -15,6 +15,12 @@
     --default-header-bg: palegreen
 }
 
+/* Set margins for printing */
+@page {
+    size: A4 portrait;
+    margin: 0.75in 0.5in;
+}
+
 /* CSS reset */
 * { box-sizing: border-box; }
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
