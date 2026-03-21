@@ -81,6 +81,10 @@ ul, ol {
     max-width: 960px;
 }
 
+li > ul, li > ol {
+    margin-bottom: 0;
+}
+
 ul > ul, ol > ol, ul > ol, ol > ul {
   margin-top: 0.2em;
 }
