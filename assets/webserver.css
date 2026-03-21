@@ -42,6 +42,12 @@ body {
   color: var( --body-fg, var( --default-body-fg ) );
 }
 
+@media print {
+    body {
+        padding: 0.75in;
+    }
+}
+
 h1 { font-size: 32px; font-weight: 400; margin-bottom: 16px; }
 h2 { font-size: 24px; font-weight: 400; margin-bottom: 16px; }
 h3 { font-size: 20px; font-weight: 400; margin-bottom: 16px; }
