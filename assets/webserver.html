@@ -17,7 +17,9 @@
         <script type="module">
 
             var converter = new showdown.Converter();
+            converter.setOption("literalMidWordUnderscores", true);
             converter.setOption("tables", true);
+            converter.setOption("tasklists", true);
 
             [...document.getElementsByClassName("markdown")].forEach(elem => {
                 const html = converter.makeHtml(elem.textContent);
