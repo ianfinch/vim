@@ -101,6 +101,12 @@ ul > ul, ol > ol, ul > ol, ol > ul {
   margin-top: 0.2em;
 }
 
+/* Showdown can put in checkboxes for task lists. They have hard-coded -1.6em
+ * left margin which we can't override, so we need to adjust for it instead */
+li.task-list-item:has(input[type=checkbox]) {
+    margin-left: 1.6em;
+}
+
 a {
   text-decoration: none;
   color: royalblue;
