@@ -73,6 +73,65 @@ end
 vim.keymap.set("", "<Leader>os", openSnippets, { desc = "Open snippets" })
 vim.keymap.set("", "<Leader>xs", exitSnippet, { desc = "Exit a snippet" })
 
+-- Files for Claude
+snippets["CLAUDE.md"] = [[# Claude Code Guidance
+
+## Constitution
+
+All development is governed by the project constitution at `.specify/memory/constitution.md`.
+Read it before planning or implementing any feature. It is authoritative over all other conventions.
+
+Key non-negotiables:
+- **Code quality**: Linting and static analysis must pass with zero errors. Peer review required on every PR.
+- **Testing (NON-NEGOTIABLE)**: Tests MUST be written and failing before implementation begins (TDD). Unit coverage floor is 80%. Integration tests must use real dependencies, not mocks.
+- **UX consistency**: Design tokens only. WCAG 2.1 AA required. Uniform interaction patterns across the product.
+- **Performance**: API p95 ≤ 200ms. UI feedback ≤ 100ms. No benchmark may regress > 10% without written justification.
+
+## Feature Development Workflow
+
+Features follow the speckit process in order:
+
+1. `/speckit.specify` — write the feature spec from a natural language description
+2. `/speckit.clarify` — identify and resolve underspecified areas
+3. `/speckit.plan` — generate the implementation plan (includes Constitution Check)
+4. `/speckit.tasks` — generate the dependency-ordered task list
+5. `/speckit.implement` — execute the tasks
+
+Do not begin implementation without a reviewed spec and plan.
+
+## Quality Gates
+
+Every PR must pass before merge:
+
+| Gate | Requirement |
+|------|-------------|
+| Lint | Zero warnings or errors |
+| Type Check | Zero type errors |
+| Unit Tests | All pass; coverage ≥ 80% per module |
+| Integration Tests | All pass against real dependencies |
+| Performance | No benchmark regresses > 10% |
+| Accessibility | WCAG 2.1 AA for all UI changes |
+| Code Review | Approved by ≥ 1 peer |
+
+## Speckit Conventions
+
+- When a requirement is left as an open question (marked `[NEEDS CLARIFICATION]` or deferred
+  by the user), always save the options table to the spec file before reporting completion.
+  Do not leave options only in the chat.
+
+## General Behaviour
+
+- Spec-first: do not write code for non-trivial features without an approved spec.
+- Keep solutions simple. No speculative abstractions or premature generalisation.
+- Prefer editing existing files over creating new ones.
+- Do not add comments, docstrings, or error handling beyond what the task requires.
+- Commit messages must use conventional commits (`feat:`, `fix:`, `test:`, `docs:`, `perf:`, `refactor:`).
+
+## Documents
+
+- Put any documents in `docs/claude`
+- Do not modify documents in any other folder inside `docs`]]
+
 -- HTML5 boilerplate
 snippets["HTML boilerplate"] = [[<!doctype html>
 <html lang="en-GB">
