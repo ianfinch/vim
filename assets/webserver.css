@@ -3,7 +3,7 @@
     --default-body-bg: #fff;
     --default-body-fg: #000;
     --default-body-fg-strong: dodgerblue;
-    --default-pre-bg: #efefef;
+    --default-pre-bg: ghostwhite;
     --default-success-bg: #c6efce;
     --default-success-fg: #006100;
     --default-warning-bg: #ffeb9c;
@@ -12,7 +12,7 @@
     --default-failure-fg:#9c0006;
     --default-border-bg: #999;
     --default-table-header-bg: #ccc;
-    --default-header-bg: palegreen
+    --default-header-bg: linear-gradient(135deg,ivory,bisque,bisque,bisque,ivory);
 }
 
 /* Set margins for printing */
@@ -54,9 +54,9 @@ body {
     }
 }
 
-h1 { font-size: 32px; font-weight: 400; margin-bottom: 16px; }
-h2 { font-size: 24px; font-weight: 400; margin-bottom: 16px; }
-h3 { font-size: 20px; font-weight: 400; margin-bottom: 16px; }
+h1 { font-size: 32px; line-height: 40px; font-weight: 400; margin-bottom: 16px; }
+h2 { font-size: 24px; line-height: 30px; font-weight: 400; margin-bottom: 16px; }
+h3 { font-size: 20px; line-height: 25px; font-weight: 400; margin-bottom: 16px; }
 
 p {
   margin-bottom: 16px;
@@ -87,13 +87,16 @@ pre {
 }
 
 ul, ol {
-    margin-left: 3em;
+    list-style: inside;
+    margin-left: 0;
     margin-bottom: 1em;
     position: relative;
     max-width: 960px;
 }
 
+/* Nested lists we want to indent, but not have space below */
 li > ul, li > ol {
+    margin-left: 3em;
     margin-bottom: 0;
 }
 
@@ -122,12 +125,6 @@ hr {
     border-style: solid;
     border-width: 1px 0 0 0;
     border-color: var ( --border-bg, var ( --default-border-bg ) );
-}
-
-/* If there's a bullet list directly after the heading, don't indent it */
-h2 + ul, h3 + ul, h4 + ul {
-    margin-left: 0;
-    list-style: inside;
 }
 
 /* Header */
