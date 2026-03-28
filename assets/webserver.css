@@ -1,18 +1,18 @@
 /* Colours */
 :root {
-    --default-body-bg: #fff;
+    --default-body-bg: ghostwhite;
     --default-body-fg: #000;
     --default-body-fg-strong: dodgerblue;
-    --default-pre-bg: ghostwhite;
+    --default-pre-bg: gainsboro;
     --default-success-bg: #c6efce;
     --default-success-fg: #006100;
     --default-warning-bg: #ffeb9c;
     --default-warning-fg:#9c5700;
     --default-failure-bg: #ffc7ce;
     --default-failure-fg:#9c0006;
-    --default-border-bg: #999;
+    --default-border-bg: grey;
     --default-table-header-bg: #ccc;
-    --default-header-bg: linear-gradient(135deg,ivory,bisque,bisque,bisque,ivory);
+    --default-header-bg: linear-gradient(135deg,darkgrey,lightgrey,gainsboro,gainsboro,gainsboro,lightgrey,darkgrey);
 }
 
 /* Set margins for printing */
@@ -70,13 +70,15 @@ code {
     font-family: "Courier New", monospace;
     font-weight: 400;
     font-size: 14px;
-    line-height: 24px;
-    padding-top: 4px;
+    line-height: 14px;
 }
 
 p code, li code {
     background: var( --pre-bg, var( --default-pre-bg ) );
     border-radius: 4px;
+    padding-top: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 pre {
@@ -135,7 +137,7 @@ header {
     font-size: 20px;
     text-align: center;
     color: black;
-    border: 1px solid black;
+    border: 1px solid var( --border-bg, var( --default-border-bg ) );
     margin-bottom: 1em;
     padding: 0.5em 1em;
 }
