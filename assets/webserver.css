@@ -12,7 +12,7 @@
     --default-failure-fg:#9c0006;
     --default-border-bg: grey;
     --default-table-header-bg: #ccc;
-    --default-header-bg: linear-gradient(135deg,darkgrey,lightgrey,gainsboro,gainsboro,gainsboro,lightgrey,darkgrey);
+    --default-header-bg: linear-gradient(315deg,darkgrey,lightgrey,gainsboro,gainsboro,gainsboro,lightgrey,darkgrey);
 }
 
 /* Set margins for printing */
@@ -89,7 +89,7 @@ pre {
 }
 
 ul, ol {
-    list-style: inside;
+    list-style-position: inside;
     margin-left: 0;
     margin-bottom: 1em;
     position: relative;

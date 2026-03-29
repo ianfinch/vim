@@ -34,6 +34,17 @@
                 postRenderCallback: (id) => {
                     const diagram = document.getElementById(id);
                     diagram.style.width = diagram.style["max-width"];
+                    diagram.style["max-width"] = "100%";
+                    diagram.style.cursor = "zoom-in";
+                    diagram.addEventListener("click", () => {
+                        if (diagram.style.cursor === "zoom-in") {
+                            diagram.style["max-width"] = diagram.style.width;
+                            diagram.style.cursor = "zoom-out";
+                        } else {
+                            diagram.style["max-width"] = "100%";
+                            diagram.style.cursor = "zoom-in";
+                        }
+                    });
                 }
             });
         </script>
