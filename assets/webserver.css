@@ -1,9 +1,14 @@
 /* Colours */
 :root {
-    --default-body-bg: ghostwhite;
+    --default-body-bg: #99999f;
     --default-body-fg: #000;
+    --default-header-bg: linear-gradient(135deg, #1031b5, 5%, #2741b5, 10%, #4051b5, 90%, #2741b5, 95%, #1031b5);
+    --default-header-fg: #fff;
+    --default-article-bg: #fff;
+    --default-article-fg: #000;
     --default-body-fg-strong: dodgerblue;
-    --default-pre-bg: gainsboro;
+    --default-pre-bg: rgb(245, 245, 245);
+    --default-pre-fg: rgb(54, 70, 78);
     --default-success-bg: #c6efce;
     --default-success-fg: #006100;
     --default-warning-bg: #ffeb9c;
@@ -12,7 +17,6 @@
     --default-failure-fg:#9c0006;
     --default-border-bg: grey;
     --default-table-header-bg: #ccc;
-    --default-header-bg: linear-gradient(315deg,darkgrey,lightgrey,gainsboro,gainsboro,gainsboro,lightgrey,darkgrey);
 }
 
 /* Set margins for printing */
@@ -43,9 +47,54 @@ body {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   line-height: 24px;
-  padding: 12px 16px;
   background: var( --body-bg, var( --default-body-bg ) );
   color: var( --body-fg, var( --default-body-fg ) );
+}
+
+/* Mask for when we display a modal */
+div#mask {
+    background: #000000cc;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+}
+
+/* Display the mask when something has been expanded */
+div#mask:has(~ article .expanded) {
+    display: block;
+}
+
+/* Header */
+header {
+    background: var( --header-bg, var( --default-header-bg ) );
+    color: var( --header-fg, var( --default-header-fg ) );
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    box-shadow: #66666f 0 0 4px 2px;
+}
+
+/* Use article for formatting main content after header */
+article {
+    max-width: 875px;
+    padding: 12px 32px;
+    margin: 0 auto;
+    background: var( --article-bg, var( --default-article-bg ) );
+    color: var( --article-fg, var( --default-article-fg ) );
+}
+
+/* Make sure we leave room for the header before our first article */
+header + pre + article {
+    margin-top: 50px;
 }
 
 @media print {
@@ -54,13 +103,12 @@ body {
     }
 }
 
-h1 { font-size: 32px; line-height: 40px; font-weight: 400; margin-bottom: 16px; }
-h2 { font-size: 24px; line-height: 30px; font-weight: 400; margin-bottom: 16px; }
+h1 { color: rgba(0, 0, 0, 0.54); font-size: 32px; line-height: 40px; font-weight: 300; margin-bottom: 16px; }
+h2 { color: rgba(0, 0, 0, 0.87); font-size: 24px; line-height: 30px; font-weight: 300; margin-bottom: 16px; }
 h3 { font-size: 20px; line-height: 25px; font-weight: 400; margin-bottom: 16px; }
 
 p {
   margin-bottom: 16px;
-  max-width: 960px;
 }
 
 em, i { font-style: italic; }
@@ -75,6 +123,7 @@ code {
 
 p code, li code {
     background: var( --pre-bg, var( --default-pre-bg ) );
+    color: var( --pre-fg, var( --default-pre-fg ) );
     border-radius: 4px;
     padding-top: 4px;
     padding-left: 4px;
@@ -84,6 +133,7 @@ p code, li code {
 pre {
     display: table; /* Table lets us reduce to content width, but still be a block */
     background: var( --pre-bg, var( --default-pre-bg ) );
+    color: var( --pre-fg, var( --default-pre-fg ) );
     padding: 0.5em 1em;
     margin-bottom: 16px;
 }
@@ -96,14 +146,15 @@ ul, ol {
     max-width: 960px;
 }
 
-/* Nested lists we want to indent, but not have space below */
-li > ul, li > ol {
-    margin-left: 3em;
-    margin-bottom: 0;
+li {
+    margin-bottom: 8px;
 }
 
-ul > ul, ol > ol, ul > ol, ol > ul {
-  margin-top: 0.2em;
+/* Nested lists we want to indent, but not have space below */
+li > ul, li > ol {
+    margin-top: 8px;
+    margin-left: 3em;
+    margin-bottom: 0;
 }
 
 /* Showdown can put in checkboxes for task lists. They have hard-coded -1.6em
@@ -127,19 +178,6 @@ hr {
     border-style: solid;
     border-width: 1px 0 0 0;
     border-color: var ( --border-bg, var ( --default-border-bg ) );
-}
-
-/* Header */
-header {
-    background: var( --header-bg, var( --default-header-bg ) );
-    font-family: "Courier New", monospace;
-    font-weight: bold;
-    font-size: 20px;
-    text-align: center;
-    color: black;
-    border: 1px solid var( --border-bg, var( --default-border-bg ) );
-    margin-bottom: 1em;
-    padding: 0.5em 1em;
 }
 
 /* Tables */
@@ -169,6 +207,16 @@ blockquote {
 
 /* Mermaid diagrams we want a plain background */
 pre:has(> code.mermaid) {
-    background: transparent;
+    background: var( --article-bg, var( --default-article-bg ) );
     border: 1px solid var( --border-bg, var( --default-border-bg ) );
+    cursor: zoom-in;
+}
+
+/* Allow mermaid diagrams to be expanded */
+pre.expanded:has(> code.mermaid) {
+    cursor: zoom-out;
+    margin: 16px;
+    position: fixed;
+    top: 50px;
+    left: 0;
 }

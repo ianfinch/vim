@@ -10,6 +10,7 @@
         <link href="/system/webserver.css" rel="stylesheet" type="text/css" /> 
     </head>
     <body>
+        <div id="mask"></div>
         <header><!-- TITLE --></header>
         <pre class="markdown">
 <!-- CONTENT -->
@@ -23,7 +24,7 @@
 
             [...document.getElementsByClassName("markdown")].forEach(elem => {
                 const html = converter.makeHtml(elem.textContent);
-                elem.insertAdjacentHTML("afterend", html);
+                elem.insertAdjacentHTML("afterend", "<article>" + html + "</article>");
                 elem.style.display = "none";
             });
 
@@ -33,16 +34,14 @@
                 querySelector: ".mermaid",
                 postRenderCallback: (id) => {
                     const diagram = document.getElementById(id);
+                    const classes = diagram.parentElement.parentElement.classList;
                     diagram.style.width = diagram.style["max-width"];
                     diagram.style["max-width"] = "100%";
-                    diagram.style.cursor = "zoom-in";
                     diagram.addEventListener("click", () => {
-                        if (diagram.style.cursor === "zoom-in") {
-                            diagram.style["max-width"] = diagram.style.width;
-                            diagram.style.cursor = "zoom-out";
+                        if (classes.contains("expanded")) {
+                            classes.remove("expanded");
                         } else {
-                            diagram.style["max-width"] = "100%";
-                            diagram.style.cursor = "zoom-in";
+                            classes.add("expanded");
                         }
                     });
                 }
