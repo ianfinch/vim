@@ -21,8 +21,29 @@
 
 /* Set margins for printing */
 @page {
-    size: A4 portrait;
-    margin: 0.75in 0.5in;
+    size: a4 portrait;
+    margin: 0.5in 0.25in 0.5in 0.25in;
+}
+
+/* Handle printing */
+@media print {
+
+    body {
+        background: var( --article-bg, var( --default-article-bg ) ) !important;
+    }
+
+    body > header {
+        position: static;
+        box-shadow: none;
+        font-size: 12px;
+        line-height: 12px;
+    }
+
+    body > article {
+        width: 210mm;
+        max-width: 210mm;
+        margin: 0 !important;
+    }
 }
 
 /* CSS reset */
@@ -95,12 +116,6 @@ article {
 /* Make sure we leave room for the header before our first article */
 header + pre + article {
     margin-top: 50px;
-}
-
-@media print {
-    body {
-        padding: 0.75in;
-    }
 }
 
 h1 { color: rgba(0, 0, 0, 0.54); font-size: 32px; line-height: 40px; font-weight: 300; margin-bottom: 16px; }
