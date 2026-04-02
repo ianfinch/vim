@@ -51,10 +51,13 @@ function startServer(cmd)
     end
 
     -- If we don't have an output buffer, create one
+    -- Also create window and channel
     if not bufferId then
 
         bufferId = vim.api.nvim_create_buf(true, true)
-        windowId = vim.api.nvim_open_win(bufferId, false, { win = 0, split = "below" })
+        vim.cmd("tabnew")
+        windowId = vim.fn.win_getid()
+        vim.api.nvim_win_set_buf(windowId, bufferId)
         channelId = vim.api.nvim_open_term(bufferId, {})
     end
 
