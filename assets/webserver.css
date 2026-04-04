@@ -2,7 +2,14 @@
 :root {
     --default-body-bg: #99999f;
     --default-body-fg: #000;
-    --default-header-bg: linear-gradient(135deg, #1031b5, 5%, #2741b5, 10%, #4051b5, 90%, #2741b5, 95%, #1031b5);
+    --header-grad-1: #081195;
+    --header-grad-2: #072195;
+    --header-grad-3: #4051b5;
+    --default-header-bg: linear-gradient(125deg, var( --header-grad-1 ),
+                                             5%, var( --header-grad-2 ),
+                                            10%, var( --header-grad-3 ),
+                                            90%, var( --header-grad-2 ),
+                                            95%, var( --header-grad-1 ));
     --default-header-fg: #fff;
     --default-article-bg: #fff;
     --default-article-fg: #000;
@@ -107,6 +114,7 @@ header {
 /* Use article for formatting main content after header */
 article {
     max-width: 875px;
+    min-height: calc( 100vh - 50px );
     padding: 12px 32px;
     margin: 0 auto;
     background: var( --article-bg, var( --default-article-bg ) );
@@ -146,11 +154,12 @@ p code, li code {
 }
 
 pre {
-    display: table; /* Table lets us reduce to content width, but still be a block */
     background: var( --pre-bg, var( --default-pre-bg ) );
     color: var( --pre-fg, var( --default-pre-fg ) );
     padding: 0.5em 1em;
     margin-bottom: 16px;
+    max-width: calc( 875px - 2 * 1em );
+    overflow-x: scroll;
 }
 
 ul, ol {
