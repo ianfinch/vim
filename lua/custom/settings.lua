@@ -55,7 +55,7 @@ function _G.custom_fold_text()
     local label = vim.fn.getline(vim.v.foldstart)
     local line_count = vim.v.foldend - vim.v.foldstart + 1
 
-    return "⚡" .. label .. " (" .. line_count .. " lines) "
+    return "   " .. label .. "  " .. line_count .. " lines "
 end
 
 vim.opt.foldmethod = "expr"
