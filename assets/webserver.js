@@ -85,6 +85,13 @@ module.exports = function(req, res, next) {
     if (extension === "md") {
         res.write(escapedContent);
 
+    // Mermaid diagram we use mermaid formatting
+    } else if (extension === "mmd") {
+
+        res.write("```mermaid\n");
+        res.write(escapedContent);
+        res.write("```\n");
+
     // Anything else we display as text
     } else {
 

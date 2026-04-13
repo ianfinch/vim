@@ -240,6 +240,7 @@ pre:has(> code.mermaid) {
 pre.expanded:has(> code.mermaid) {
     cursor: zoom-out;
     margin: 16px;
+    min-width: calc( 100% - 32px );
     position: fixed;
     top: 50px;
     left: 0;
