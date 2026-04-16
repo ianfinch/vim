@@ -159,7 +159,7 @@ pre {
     padding: 0.5em 1em;
     margin-bottom: 16px;
     max-width: calc( 875px - 2 * 1em );
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 ul, ol {
