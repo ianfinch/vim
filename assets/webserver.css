@@ -126,6 +126,22 @@ header + pre + article {
     margin-top: 50px;
 }
 
+/* Special case, the article only contains a single pre block */
+body:has(> article > pre:only-child) {
+    background: var( --article-bg, var( --default-article-bg ) );
+}
+
+article:has(> pre:only-child) {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+}
+
+article:has(> pre:only-child) pre {
+    background: var( --article-bg, var( --default-article-bg ) );
+}
+
+/* Style our headings */
 h1 { color: rgba(0, 0, 0, 0.54); font-size: 32px; line-height: 40px; font-weight: 300; margin-bottom: 16px; }
 h2 { color: rgba(0, 0, 0, 0.87); font-size: 24px; line-height: 30px; font-weight: 300; margin-bottom: 16px; }
 h3 { font-size: 20px; line-height: 25px; font-weight: 400; margin-bottom: 16px; }

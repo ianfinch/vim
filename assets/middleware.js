@@ -80,9 +80,14 @@ module.exports = function(req, res, next) {
     // Work out the name of this page and get the content
     const filename = parsedUrl.base;
     const fileContent = fs.readFileSync(filepath, { encoding: "utf8", flag: "r" });
-    const escapedContent = fileContent.replace(/&/g, "&amp;")
-                                      .replace(/</g, "&lt;")
-                                      .replace(/>/g, "&gt;");
+    let escapedContent = fileContent.replace(/&/g, "&amp;")
+                                    .replace(/</g, "&lt;")
+                                    .replace(/>/g, "&gt;");
+
+    // If we don't have a final newline, add one
+    if (escapedContent.substr(-1) !== "\n") {
+        escapedContent = escapedContent + "\n";
+    }
 
     // Render as HTML and embed the file contents
     const dirname = parsedUrl.dir + ( parsedUrl.dir === "/" ? "" : "/");
