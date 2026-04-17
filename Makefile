@@ -14,7 +14,7 @@ personal:
 	cp -R colors $(NVIM_DIR)/
 	mkdir -p $(NVIM_SHARE)
 	cp -R assets $(NVIM_SHARE)/
-	(echo "let systemDir = '$(NVIM_SHARE)/assets';" ; cat assets/webserver.js) > $(NVIM_SHARE)/assets/webserver.js
+	(echo "let systemDir = '$(NVIM_SHARE)/assets';" ; cat assets/middleware.js) > $(NVIM_SHARE)/assets/middleware.js
 
 .PHONY: clean
 clean:
