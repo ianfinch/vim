@@ -15,6 +15,9 @@ local channelId = false
 -- The window displaying our server log
 local windowId = false
 
+-- Detect headless mode
+local headless = # vim.api.nvim_list_uis() == 0
+
 -- Check if a job is running
 function serverIsRunning()
 
@@ -30,6 +33,12 @@ end
 
 -- Add output to the log buffer
 function log(msg)
+
+    -- If we are running in headless mode, just print the message
+    if headless then
+        io.write(msg, "\n")
+        return
+    end
 
     -- Display the message
     vim.api.nvim_chan_send(channelId, msg)
