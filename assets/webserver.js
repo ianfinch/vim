@@ -5,12 +5,29 @@ converter.setOption("tables", true);
 converter.setOption("tasklists", true);
 converter.setOption("metadata", true);
 
+/* Function to toggle expanded status on click */
+const addExpandToggle = elem => {
+
+    elem.addEventListener("click", () => {
+        if (classes.contains("expanded")) {
+            classes.remove("expanded");
+        } else {
+            classes.add("expanded");
+        }
+    });
+};
+
 /* Convert any markdown blocks to HTML */
 [...document.getElementsByClassName("markdown")].forEach(elem => {
     const text = elem.textContent.replace(/(```[a-z]+) +/g, "$1");
     const html = converter.makeHtml(text);
     elem.insertAdjacentHTML("afterend", "<article>" + html + "</article>");
     elem.style.display = "none";
+});
+
+/* Add image expansion where needed */
+[...document.querySelectorAll("p > img:only-child")].forEach(elem => {
+    addExpandToggle(elem);
 });
 
 /* If we have mermaid diagrams, render them */
@@ -23,12 +40,6 @@ await mermaid.run({
         const classes = diagram.parentElement.parentElement.classList;
         diagram.style.width = diagram.style["max-width"];
         diagram.style["max-width"] = "100%";
-        diagram.addEventListener("click", () => {
-            if (classes.contains("expanded")) {
-                classes.remove("expanded");
-            } else {
-                classes.add("expanded");
-            }
-        });
+        addExpandToggle(diagram);
     }
 });
