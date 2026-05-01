@@ -208,6 +208,7 @@ li.task-list-item:has(input[type=checkbox]) {
 /* Keep images scaled to fit too */
 p > img:only-child {
     max-width: calc( var( --article-width ) - 2 * 1em );
+    cursor: zoom-in;
 }
 
 a {

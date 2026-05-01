@@ -6,13 +6,13 @@ converter.setOption("tasklists", true);
 converter.setOption("metadata", true);
 
 /* Function to toggle expanded status on click */
-const addExpandToggle = elem => {
+const addExpandToggle = (elem, targetClassList) => {
 
     elem.addEventListener("click", () => {
-        if (classes.contains("expanded")) {
-            classes.remove("expanded");
+        if (targetClassList.contains("expanded")) {
+            targetClassList.remove("expanded");
         } else {
-            classes.add("expanded");
+            targetClassList.add("expanded");
         }
     });
 };
@@ -27,7 +27,7 @@ const addExpandToggle = elem => {
 
 /* Add image expansion where needed */
 [...document.querySelectorAll("p > img:only-child")].forEach(elem => {
-    addExpandToggle(elem);
+    addExpandToggle(elem, elem.classList);
 });
 
 /* If we have mermaid diagrams, render them */
@@ -40,6 +40,6 @@ await mermaid.run({
         const classes = diagram.parentElement.parentElement.classList;
         diagram.style.width = diagram.style["max-width"];
         diagram.style["max-width"] = "100%";
-        addExpandToggle(diagram);
+        addExpandToggle(diagram, classes);
     }
 });
