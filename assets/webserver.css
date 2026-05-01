@@ -108,7 +108,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 10;
+    z-index: 50;
     box-shadow: #66666f 0 0 4px 2px;
 }
 
@@ -269,8 +269,8 @@ p:has(> img.expanded:only-child),
 pre.expanded:has(> code.mermaid) {
     cursor: zoom-out;
     margin: 16px;
-    min-width: calc( 100% - 32px );
+    max-width: calc( 100% - 32px );
     position: absolute;
-    top: 50px;
     left: 0;
+    z-index: 10;
 }
