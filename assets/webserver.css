@@ -206,9 +206,13 @@ li.task-list-item:has(input[type=checkbox]) {
 }
 
 /* Keep images scaled to fit too */
-p > img:only-child {
+p:has(> img:only-child) {
     max-width: calc( var( --article-width ) - 2 * 1em );
     cursor: zoom-in;
+}
+
+p > img:only-child {
+    width: 100%;
 }
 
 a {
@@ -260,12 +264,13 @@ pre:has(> code.mermaid) {
     cursor: zoom-in;
 }
 
-/* Allow mermaid diagrams to be expanded */
+/* Allow items to be expanded */
+p:has(> img.expanded:only-child),
 pre.expanded:has(> code.mermaid) {
     cursor: zoom-out;
     margin: 16px;
     min-width: calc( 100% - 32px );
-    position: fixed;
+    position: absolute;
     top: 50px;
     left: 0;
 }
