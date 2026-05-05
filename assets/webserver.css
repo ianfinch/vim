@@ -100,10 +100,10 @@ header {
     color: var( --header-fg );
     font-family: "Courier New", monospace;
     font-weight: bold;
-    font-size: 20px;
-    line-height: 30px;
+    font-size: 14px;
+    line-height: 20px;
     text-align: center;
-    padding: 10px 20px;
+    padding: 4px;
     position: fixed;
     top: 0;
     left: 0;
@@ -124,7 +124,7 @@ article {
 
 /* Make sure we leave room for the header before our first article */
 header + pre + article {
-    margin-top: 50px;
+    margin-top: 28px;
 }
 
 /* Special case, the article only contains a single pre block */
