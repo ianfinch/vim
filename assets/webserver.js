@@ -4,6 +4,7 @@ converter.setOption("literalMidWordUnderscores", true);
 converter.setOption("tables", true);
 converter.setOption("tasklists", true);
 converter.setOption("metadata", true);
+converter.setOption("disableForced4SpacesIndentedSublists", true);
 
 /* Function to toggle expanded status on click */
 const addExpandToggle = (elem, targetClassList) => {
