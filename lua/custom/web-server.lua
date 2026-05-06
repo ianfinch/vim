@@ -40,11 +40,20 @@ function log(msg)
         return
     end
 
+    -- Check if we need to create a new window
+    if windowId == false or not vim.api.nvim_win_is_valid(windowId) then
+
+        vim.cmd("tabnew")
+        windowId = vim.fn.win_getid()
+        vim.api.nvim_win_set_buf(windowId, bufferId)
+        channelId = vim.api.nvim_open_term(bufferId, {})
+    end
+
     -- Display the message
     vim.api.nvim_chan_send(channelId, msg)
     vim.api.nvim_chan_send(channelId, "\n")
 
-    -- Scroll down to the end
+    -- Scroll the window down to the end of the log
     local lines = vim.api.nvim_buf_line_count(bufferId)
     vim.api.nvim_win_set_cursor(windowId, { lines, 0 })
 end
@@ -64,10 +73,7 @@ function startServer(cmd)
     if not bufferId then
 
         bufferId = vim.api.nvim_create_buf(true, true)
-        vim.cmd("tabnew")
-        windowId = vim.fn.win_getid()
-        vim.api.nvim_win_set_buf(windowId, bufferId)
-        channelId = vim.api.nvim_open_term(bufferId, {})
+        vim.api.nvim_buf_set_name(bufferId, "Server log")
     end
 
     -- Actually start the server
