@@ -131,3 +131,24 @@ vim.keymap.set("", "<Leader>o?", ":Rg <cword><CR>", { desc = "Find current word"
 
 -- Run a curl command via Resty
 vim.keymap.set({ "n", "v" }, "<Leader>oc", ":Resty run<CR>", { desc = "Curl using Resty" })
+
+-- Set the working directory to the current directory
+local function setWorkingDirectory()
+    local wd = vim.fn.expand("%:p:h")
+
+    -- Make sure we've got a file to work with
+    if wd == "" then
+        vim.print("ERROR: No file open in vim")
+        return
+    end
+
+    -- Handle if we're in an oil file selector
+    if string.sub(wd, 1, 6) == "oil://" then
+        wd = string.sub(wd, 7)
+    end
+
+    -- Set the directory
+    vim.cmd.cd(wd)
+    vim.print("INFO: Directory has been set to " .. wd)
+end
+vim.keymap.set("", "<Leader>d", setWorkingDirectory, { desc = "Set working directory" })
