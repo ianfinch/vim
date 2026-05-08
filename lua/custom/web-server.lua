@@ -46,7 +46,6 @@ function log(msg)
         vim.cmd("tabnew")
         windowId = vim.fn.win_getid()
         vim.api.nvim_win_set_buf(windowId, bufferId)
-        channelId = vim.api.nvim_open_term(bufferId, {})
     end
 
     -- Display the message
@@ -74,6 +73,7 @@ function startServer(cmd)
 
         bufferId = vim.api.nvim_create_buf(true, true)
         vim.api.nvim_buf_set_name(bufferId, "Server log")
+        channelId = vim.api.nvim_open_term(bufferId, {})
     end
 
     -- Actually start the server
