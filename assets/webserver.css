@@ -1,7 +1,7 @@
 /* Colours */
 :root {
     --body-bg: #f0f0ff;
-    --body-fg: #000;
+    --body-fg: #484848;
     --header-grad-1: #081195;
     --header-grad-2: #072195;
     --header-grad-3: #4051b5;
@@ -13,8 +13,8 @@
     --header-fg: #fff;
     --article-width: 875px;
     --article-bg: #fff;
-    --article-fg: #000;
-    --body-fg-strong: dodgerblue;
+    --article-fg: var( --body-fg );
+    --article-fg-strong: #003;
     --pre-bg: rgb(245, 245, 245);
     --pre-fg: rgb(54, 70, 78);
     --success-bg: #c6efce;
@@ -152,9 +152,9 @@ article:has(> pre:only-child) code {
 }
 
 /* Style our headings */
-h1, h2, h3, h4 { font-family: "Quattrocento", serif; }
-h1 { color: rgba(0, 0, 0, 0.54); font-size: 32px; line-height: 40px; font-weight: 400; margin-bottom: 16px; }
-h2 { color: rgba(0, 0, 0, 0.87); font-size: 24px; line-height: 30px; font-weight: 400; margin-bottom: 16px; }
+h1, h2, h3, h4 { font-family: "Quattrocento", serif; color: #000; }
+h1 { font-size: 32px; line-height: 40px; font-weight: 400; margin-bottom: 16px; }
+h2 { font-size: 24px; line-height: 30px; font-weight: 400; margin-bottom: 16px; }
 h3 { font-size: 20px; line-height: 25px; font-weight: 400; margin-bottom: 16px; }
 
 p {
@@ -162,7 +162,7 @@ p {
 }
 
 em, i { font-style: italic; }
-strong, b { font-weight: bold; }
+strong, b { font-weight: 700; color: var( --article-fg-strong ); }
 
 code {
     font-family: "Courier New", monospace;
@@ -190,21 +190,20 @@ pre {
 }
 
 ul, ol {
-    list-style-position: inside;
-    margin-left: 0;
+    list-style-position: outside;
+    margin-left: 2em;
     margin-bottom: 1em;
     position: relative;
     max-width: 960px;
 }
 
-li {
+ol > li {
     margin-bottom: 8px;
 }
 
-/* Nested lists we want to indent, but not have space below */
+/* Nested lists we don't want space below */
 li > ul, li > ol {
     margin-top: 8px;
-    margin-left: 3em;
     margin-bottom: 0;
 }
 
