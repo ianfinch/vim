@@ -18,6 +18,7 @@ const passThrough = [
     "html",
     "jpg",
     "js",
+    "mjs",
     "pdf",
     "png",
     "svg"
@@ -25,8 +26,9 @@ const passThrough = [
 
 // MIME types
 const mime = {
+    css: "text/css",
     js: "text/javascript",
-    css: "text/css"
+    mjs: "text/javascript"
 };
 
 // We need to manipulate file paths

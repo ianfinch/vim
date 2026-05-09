@@ -32,7 +32,6 @@ const addExpandToggle = (elem, targetClassList) => {
 });
 
 /* If we have mermaid diagrams, render them */
-import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
 mermaid.initialize({ startOnLoad: false });
 await mermaid.run({
     querySelector: ".mermaid",

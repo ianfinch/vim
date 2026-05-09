@@ -25,6 +25,9 @@
     --failure-fg:#9c0006;
     --border-bg: grey;
     --table-header-bg: #ccc;
+    --text-file-bg: #002b36;
+    --text-file-fg: #93a1a1;
+    --text-file-font-size: 12px;
 }
 
 /* Set margins for printing */
@@ -73,7 +76,8 @@ summary, time, mark, audio, video {
 
 /* Style standard elements */
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Questrial", sans-serif;
+  font-optical-sizing: auto;
   font-size: 16px;
   line-height: 24px;
   background: var( --body-bg );
@@ -125,24 +129,32 @@ header + pre + article {
     margin-top: 28px;
 }
 
-/* Special case, the article only contains a single pre block */
+/* Special case, the article only contains a single pre block (typically from a text-based file) */
 body:has(> article > pre:only-child) {
-    background: var( --article-bg );
+    background: var( --text-file-bg );
 }
 
 article:has(> pre:only-child) {
+    background: var( --text-file-bg );
     margin-left: 0;
     margin-right: 0;
     padding: 0;
 }
 
 article:has(> pre:only-child) pre {
-    background: var( --article-bg );
+    background: var( --text-file-bg );
+    color: var( --text-file-fg );
+    overflow-x: unset;
+}
+article:has(> pre:only-child) code {
+    font-size: var( --text-file-font-size );
+    line-height: var( --text-file-font-size );
 }
 
 /* Style our headings */
-h1 { color: rgba(0, 0, 0, 0.54); font-size: 32px; line-height: 40px; font-weight: 300; margin-bottom: 16px; }
-h2 { color: rgba(0, 0, 0, 0.87); font-size: 24px; line-height: 30px; font-weight: 300; margin-bottom: 16px; }
+h1, h2, h3, h4 { font-family: "Quattrocento", serif; }
+h1 { color: rgba(0, 0, 0, 0.54); font-size: 32px; line-height: 40px; font-weight: 400; margin-bottom: 16px; }
+h2 { color: rgba(0, 0, 0, 0.87); font-size: 24px; line-height: 30px; font-weight: 400; margin-bottom: 16px; }
 h3 { font-size: 20px; line-height: 25px; font-weight: 400; margin-bottom: 16px; }
 
 p {
