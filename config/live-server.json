@@ -1,0 +1,4 @@
+{
+	"logLevel": 2,
+	"middleware": [ "__SERVER_DIR__/middleware.js" ]
+}
