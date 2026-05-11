@@ -14,7 +14,7 @@
     --article-width: 875px;
     --article-bg: #fff;
     --article-fg: var( --body-fg );
-    --article-fg-strong: #003;
+    --article-fg-strong: #000017;
     --pre-bg: rgb(245, 245, 245);
     --pre-fg: rgb(54, 70, 78);
     --success-bg: #c6efce;
@@ -126,7 +126,7 @@ article {
 }
 
 header + pre + article {
-    margin-top: 28px;
+    margin-top: 20px;
 }
 
 /* Special case, the article only contains a single pre block (typically from a text-based file) */
