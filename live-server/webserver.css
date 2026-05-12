@@ -197,14 +197,19 @@ ul, ol {
     max-width: 960px;
 }
 
+/* Leave space between numbered list items */
 ol > li {
     margin-bottom: 8px;
 }
 
 /* Nested lists we don't want space below */
 li > ul, li > ol {
-    margin-top: 8px;
     margin-bottom: 0;
+}
+
+/* Leave space above a numbered list inside an unordered list */
+li > ol {
+    margin-top: 8px;
 }
 
 /* Showdown can put in checkboxes for task lists. They have hard-coded -1.6em

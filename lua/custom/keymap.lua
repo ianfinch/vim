@@ -1,3 +1,6 @@
+-- My utility functions
+local utils = require("custom.utils")
+
 -- Use popup a couple of times
 local popup = require("plenary.popup")
 
@@ -144,7 +147,13 @@ local function setWorkingDirectory()
 
     -- Handle if we're in an oil file selector
     if string.sub(wd, 1, 6) == "oil://" then
+
+        -- Remove the oil prefix
         wd = string.sub(wd, 7)
+
+        -- Oil seems to always return a unix path, which we will need to
+        -- convert if we are running on Windows
+        wd = utils.toUnixPath(wd)
     end
 
     -- Set the directory

@@ -42,4 +42,18 @@ function utils.timestamp()
     return os.date("%Y-%m-%dT%H:%M:%S")
 end
 
+-- Convert a unix path to a windows one
+function utils.toUnixPath(path)
+
+    -- If it's a unix path, just return it
+    if utils.pathSeparator() == "/" then
+
+        return path
+    end
+
+    -- Do the conversion to Windows format
+    local converted, _ = path:gsub("^/[a-zA-Z]/", "C:\\"):gsub("/", "\\")
+    return converted
+end
+
 return utils
