@@ -161,3 +161,16 @@ local function setWorkingDirectory()
     vim.print("INFO: Directory has been set to " .. wd)
 end
 vim.keymap.set("", "<Leader>d", setWorkingDirectory, { desc = "Set working directory" })
+
+-- Toggle custom formatting based on file extension
+local function toggleCustomFormat()
+
+    local ext = vim.bo.filetype
+
+    if ext == "csv" and vim.fn.exists(":CsvViewToggle") > 0 then
+        vim.cmd("CsvViewToggle")
+    else
+        print("ERROR: No format defined for filetype: " .. ext)
+    end
+end
+vim.keymap.set("", "<Leader>f", toggleCustomFormat, { desc = "Toggle custom formatting" })
