@@ -49,9 +49,10 @@ M.check = function()
 
     vim.health.start("Checking web server")
     check_external("live-server")
-    check_file_exists("assets" .. pathSeparator .. "webserver.html")
-    check_file_exists("assets" .. pathSeparator .. "webserver.css")
-    check_file_exists("assets" .. pathSeparator .. "webserver.js")
+    check_file_exists("live-server" .. pathSeparator .. "middleware.js")
+    check_file_exists("live-server" .. pathSeparator .. "webserver.html")
+    check_file_exists("live-server" .. pathSeparator .. "webserver.css")
+    check_file_exists("live-server" .. pathSeparator .. "webserver.js")
 end
 
 return M
