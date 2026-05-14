@@ -3,6 +3,7 @@ vim.g.mapleader = "," -- Set leader key before Lazy
 -- My own plugins
 require("custom.lazy")
 require("custom.settings")
+require("custom.boxes")
 require("custom.buffers")
 require("custom.npm")
 require("custom.projects")
