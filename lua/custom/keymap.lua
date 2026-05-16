@@ -169,8 +169,10 @@ local function toggleCustomFormat()
 
     if ext == "csv" and vim.fn.exists(":CsvViewToggle") > 0 then
         vim.cmd("CsvViewToggle")
+    elseif ext == "markdown" and vim.fn.exists(":TableTidy") > 0 then
+        vim.cmd("TableTidy")
     else
-        print("ERROR: No format defined for filetype: " .. ext)
+        vim.notify("No format defined for filetype: " .. ext, vim.log.levels.WARN, {})
     end
 end
 vim.keymap.set("", "<Leader>f", toggleCustomFormat, { desc = "Toggle custom formatting" })
