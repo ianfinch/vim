@@ -18,12 +18,44 @@ const addExpandToggle = (elem, targetClassList) => {
     });
 };
 
+/* Utility function to create an element */
+const createElement = name => {
+
+    const result = {
+        value: document.createElement(name),
+        addAttribute: (k, v) => { result.value.setAttribute(k, v); return result; }
+    };
+
+    return result;
+};
+
+/* Function to add a stylesheet to the page */
+const addStyleSheet = cssFile => {
+
+    const link = createElement("link")
+                    .addAttribute("href", cssFile)
+                    .addAttribute("rel", "stylesheet")
+                    .addAttribute("type", "text/css")
+                    .value;
+    const head = document.getElementsByTagName("head")[0];
+    head.appendChild(link);
+};
+
+/* Function to handle frontmatter */
+const handleFrontmatter = frontmatter => {
+
+    if (frontmatter.css) {
+        addStyleSheet(frontmatter.css);
+    }
+};
+
 /* Convert any markdown blocks to HTML */
 [...document.getElementsByClassName("markdown")].forEach(elem => {
     const text = elem.textContent.replace(/(```[a-z]+) +/g, "$1");
     const html = converter.makeHtml(text);
     elem.insertAdjacentHTML("afterend", "<article>" + html + "</article>");
     elem.style.display = "none";
+    handleFrontmatter(converter.getMetadata());
 });
 
 /* Add image expansion where needed */
