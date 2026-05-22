@@ -103,10 +103,7 @@ end
 -- Start a web server
 function startWebServer()
 
-    local pathSeparator = utils.pathSeparator()
-
-    local liverServerDir = vim.fn.stdpath("data") .. pathSeparator .. "live-server" .. pathSeparator
-    startServer({ "live-server", "--verbose", "--middleware=" .. liverServerDir .. "middleware.js" })
+    startServer({ "live-server" })
 end
 
 -- Stop the server (if it's running)
