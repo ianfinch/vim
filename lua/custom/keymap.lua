@@ -11,7 +11,7 @@ vim.keymap.set("n", "'", "`", { noremap = true })
 vim.keymap.set("n", "`", "'", { noremap = true })
 
 -- Cancel the current search highlight
-vim.keymap.set("", "<Leader>/", ":nohlsearch<CR>", { desc = "Clear search term" })
+vim.keymap.set("", "<Leader>x/", ":nohlsearch<CR>", { desc = "Clear search term" })
 
 -- Shortcuts to open and close a tab
 vim.keymap.set("", "<Leader>ot", ":tabnew<CR>", { desc = "Open new tab" })
@@ -129,8 +129,8 @@ vim.keymap.set("", "<Leader>u", displayUnicodeCharacters, { desc = "Insert unico
 -- Enable our ripgrep keymaps
 vim.keymap.del("", "<Leader>rg")
 vim.keymap.del("", "<Leader>rw")
-vim.keymap.set("", "<Leader>o/", ":Rg<CR>", { desc = "Find using ripgrep" })
-vim.keymap.set("", "<Leader>o?", ":Rg <cword><CR>", { desc = "Find current word" })
+vim.keymap.set("", "<Leader>/", ":Rg<CR>", { desc = "Find using ripgrep" })
+vim.keymap.set("", "<Leader>?", ":Rg <cword><CR>", { desc = "Find current word" })
 
 -- Run a curl command via Resty
 vim.keymap.set({ "n", "v" }, "<Leader>oc", ":Resty run<CR>", { desc = "Curl using Resty" })
