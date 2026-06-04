@@ -28,13 +28,12 @@ local function check_external(cmd)
 end
 
 -- Check whether a file exists
-local function check_file_exists(filename)
+local function check_file_exists(filepath)
 
-    local fullpath = dataDir .. pathSeparator .. filename
-    if vim.uv.fs_stat(fullpath) then
-        vim.health.ok(filename .. " file exists")
+    if vim.uv.fs_stat(filepath) then
+        vim.health.ok(filepath .. " file exists")
     else
-        vim.health.error(filename .. " file does not exist")
+        vim.health.error(filepath .. " file does not exist")
     end
 end
 
@@ -49,10 +48,7 @@ M.check = function()
 
     vim.health.start("Checking web server")
     check_external("live-server")
-    check_file_exists("live-server" .. pathSeparator .. "middleware.js")
-    check_file_exists("live-server" .. pathSeparator .. "webserver.html")
-    check_file_exists("live-server" .. pathSeparator .. "webserver.css")
-    check_file_exists("live-server" .. pathSeparator .. "webserver.js")
+    check_file_exists(os.getenv("HOME") .. pathSeparator .. ".live-server.json")
 end
 
 return M
